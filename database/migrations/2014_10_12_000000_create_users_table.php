@@ -18,6 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('telefon',11)->nullable();
+            $table->integer('tc_kimlik',11)->nullable();
+            $table->tinyInteger('admin_user')->default(0)->comment("0 ise üye;1 ise admin");
             $table->rememberToken();
             $table->timestamps();
         });
