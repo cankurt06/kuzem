@@ -12,8 +12,24 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('anasayfa');
+})->name('anasayfa');
+
+Route::get('hakkimizda', function () {
+    return view('hakkimizda');
+})->name('hakkimizda');
+
+Route::get('bagislar', function () {
+    return view('anasayfa');
+})->name('bagislar');
+
+Route::get('haberler', function () {
+    return view('anasayfa');
+})->name('haberler');
+
+Route::get('iletisim', function () {
+    return view('anasayfa');
+})->name('iletisim');
 
 Auth::routes();
 
