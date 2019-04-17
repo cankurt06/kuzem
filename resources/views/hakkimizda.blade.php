@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('head')
-    <title>{{config('app.name')}} | Anasayfa</title>
+    <title>{{config('app.name')}} | Hakkımızda</title>
 @stop
 @section('bodyclass') single-page about-page @stop
 @section('content')

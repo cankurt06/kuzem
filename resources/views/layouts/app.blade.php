@@ -93,7 +93,7 @@
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="foot-about">
-                        <h2><a class="foot-logo" href="#"><img src="{{asset('images/foot-logo.png')}}" alt=""></a></h2>
+                        <h2><a class="foot-logo" href="{{route('anasayfa')}}"><img src="{{asset('images/foot-logo.png')}}" alt=""></a></h2>
 
                         <p>Bizlere,yardım kampanyalarımızı sosyal medyalarda paylaşarak,sayfalarımızı beğenerek de destek olabilirsiniz.</p>
 
@@ -112,20 +112,12 @@
                         <h2>Yeni Bağışlar</h2>
 
                         <ul>
-                            <li>
-                                <h3><a href="#">A new cause to help</a></h3>
-                                <div class="posted-date">MArch 12, 2018</div>
-                            </li>
-
-                            <li>
-                                <h3><a href="#">We love to help people</a></h3>
-                                <div class="posted-date">MArch 12, 2018</div>
-                            </li>
-
-                            <li>
-                                <h3><a href="#">The new ideas for helping</a></h3>
-                                <div class="posted-date">MArch 12, 2018</div>
-                            </li>
+                            @foreach(anasayfa::footer_bagislar() as $footer_bagis)
+                                <li>
+                                    <h3><a href="{{route('bagislar',["slug"=>$footer_bagis->slug])}}">{{$footer_bagis->bagis_adi}}</a></h3>
+                                    <div class="posted-date">{{carbon::parse($footer_bagis->created_at)->format('d.m.Y')}}</div>
+                                </li>
+                                @endforeach
                         </ul>
                     </div><!-- .foot-latest-news -->
                 </div><!-- .col -->

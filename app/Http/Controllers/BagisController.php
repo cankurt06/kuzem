@@ -15,5 +15,6 @@ class BagisController extends Controller
             return view('bagis',compact('bagis'));
         }
         $bagislar=Bagislar::get();
+        return view('bagislar',compact('bagislar'));
     }
 }

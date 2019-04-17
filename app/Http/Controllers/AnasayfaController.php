@@ -27,8 +27,14 @@ class AnasayfaController extends Controller
 
     public static function diger_bagislar()
     {
-        $diger_bagislar=Bagislar::orderByDesc('created_at')->get();
+        $diger_bagislar=Bagislar::where('created_at','<',Carbon::now())->orderByDesc('created_at')->get();
         return $diger_bagislar;
+    }
+
+    public static function footer_bagislar()
+    {
+        $footer_bagislar=Bagislar::where('created_at','<',Carbon::now())->orderByDesc('created_at')->limit(3)->get();
+        return $footer_bagislar;
     }
 
     public static function turk_parasi_yap($tutar)
