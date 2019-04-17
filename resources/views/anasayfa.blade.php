@@ -5,83 +5,32 @@
 @section('content')
     <div class="swiper-container hero-slider">
         <div class="swiper-wrapper">
-            <div class="swiper-slide hero-content-wrap">
-                <img src="images/hero.jpg" alt="">
+            @foreach(anasayfa::slaytlar() as $slayt)
+                <div class="swiper-slide hero-content-wrap">
+                    <img src="{{$slayt->slayt_resmi}}" alt="">
 
-                <div class="hero-content-overlay position-absolute w-100 h-100">
-                    <div class="container h-100">
-                        <div class="row h-100">
-                            <div class="col-12 col-lg-8 d-flex flex-column justify-content-center align-items-start">
-                                <header class="entry-header">
-                                    <h1>Donate</h1>
-                                    <h4>4 a better world</h4>
-                                </header><!-- .entry-header -->
+                    <div class="hero-content-overlay position-absolute w-100 h-100">
+                        <div class="container h-100">
+                            <div class="row h-100">
+                                <div class="col-12 col-lg-8 d-flex flex-column justify-content-center align-items-start">
+                                    <header class="entry-header">
+                                        <h1>{{$slayt->bagis_slogan}}</h1>
+                                    </header><!-- .entry-header -->
 
-                                <div class="entry-content mt-4">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestibulum mauris quis aliquam. Integer accumsan sodales odio, id tempus ullamcorper</p>
-                                </div><!-- .entry-content -->
+                                    <div class="entry-content mt-4">
+                                        <p>{{$slayt->bagis_adi}}</p>
+                                    </div><!-- .entry-content -->
 
-                                <footer class="entry-footer d-flex flex-wrap align-items-center mt-5">
-                                    <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
-                                    <a href="#" class="btn orange-border">Read More</a>
-                                </footer><!-- .entry-footer -->
-                            </div><!-- .col -->
-                        </div><!-- .row -->
-                    </div><!-- .container -->
-                </div><!-- .hero-content-overlay -->
-            </div><!-- .hero-content-wrap -->
-
-            <div class="swiper-slide hero-content-wrap">
-                <img src="images/hero.jpg" alt="">
-
-                <div class="hero-content-overlay position-absolute w-100 h-100">
-                    <div class="container h-100">
-                        <div class="row h-100">
-                            <div class="col-12 col-lg-8 d-flex flex-column justify-content-center align-items-start">
-                                <header class="entry-header">
-                                    <h1>Donate</h1>
-                                    <h4>4 a better world</h4>
-                                </header><!-- .entry-header -->
-
-                                <div class="entry-content mt-4">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestibulum mauris quis aliquam. Integer accumsan sodales odio, id tempus ullamcorper</p>
-                                </div><!-- .entry-content -->
-
-                                <footer class="entry-footer d-flex flex-wrap align-items-center mt-5">
-                                    <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
-                                    <a href="#" class="btn orange-border">Read More</a>
-                                </footer><!-- .entry-footer -->
-                            </div><!-- .col -->
-                        </div><!-- .row -->
-                    </div><!-- .container -->
-                </div><!-- .hero-content-overlay -->
-            </div><!-- .hero-content-wrap -->
-
-            <div class="swiper-slide hero-content-wrap">
-                <img src="images/hero.jpg" alt="">
-
-                <div class="hero-content-overlay position-absolute w-100 h-100">
-                    <div class="container h-100">
-                        <div class="row h-100">
-                            <div class="col-12 col-lg-8 d-flex flex-column justify-content-center align-items-start">
-                                <header class="entry-header">
-                                    <h1>Donate</h1>
-                                    <h4>4 a better world</h4>
-                                </header><!-- .entry-header -->
-
-                                <div class="entry-content mt-4">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestibulum mauris quis aliquam. Integer accumsan sodales odio, id tempus ullamcorper</p>
-                                </div><!-- .entry-content -->
-
-                                <footer class="entry-footer d-flex flex-wrap align-items-center mt-5">
-                                    <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
-                                    <a href="#" class="btn orange-border">Read More</a>
-                                </footer><!-- .entry-footer -->
-                            </div><!-- .col -->
-                        </div><!-- .row -->
-                    </div><!-- .container -->
-                </div><!-- .hero-content-overlay -->
-            </div><!-- .hero-content-wrap -->
+                                    <footer class="entry-footer d-flex flex-wrap align-items-center mt-5">
+                                        <a href="{{route('bagis_yap',['slug'=>$slayt->slug])}}" class="btn gradient-bg mr-2">Bağış Yap</a>
+                                        <a href="{{route('bagislar',['slug'=>$slayt->slug])}}" class="btn orange-border">Detaylı Bilgi</a>
+                                    </footer><!-- .entry-footer -->
+                                </div><!-- .col -->
+                            </div><!-- .row -->
+                        </div><!-- .container -->
+                    </div><!-- .hero-content-overlay -->
+                </div><!-- .hero-content-wrap -->
+            @endforeach
         </div><!-- .swiper-wrapper -->
 
         <div class="pagination-wrap position-absolute w-100">
@@ -149,7 +98,7 @@
                         </header>
 
                         <div class="entry-content">
-                            <p>Sizlerde gizli bağışçı olmak istiyorsanız,online bağış yapabilirsiniz. </p>
+                            <p>Sizlerde gizli yardımsever olmak istiyorsanız,online bağış yapabilirsiniz. </p>
                         </div>
                     </div>
                 </div>
@@ -286,28 +235,28 @@
 
                         <div class="cause-wrap d-flex flex-wrap justify-content-between">
                             <figure class="m-0">
-                                <img src="images/featured-causes.jpg" alt="">
+                                <img src="{{$oncelikli_bagis->bagis_resmi}}" alt="">
                             </figure>
 
                             <div class="cause-content-wrap">
                                 <header class="entry-header d-flex flex-wrap align-items-center">
-                                    <h3 class="entry-title w-100 m-0"><a href="#">Fundraiser for Kids</a></h3>
+                                    <h3 class="entry-title w-100 m-0"><a href="#">{{$oncelikli_bagis->bagis_adi}}</a></h3>
 
                                     <div class="posted-date">
-                                        <a href="#">Aug 25, 2018 </a>
+                                        <a href="#">{{carbon::parse($oncelikli_bagis->created_at)->format('d.m.Y')}} </a>
                                     </div><!-- .posted-date -->
 
                                     <div class="cats-links">
-                                        <a href="#">Ball Room New York</a>
+                                        <a href="#">{{$oncelikli_bagis->get_kategori->bagis_turu}}</a>
                                     </div><!-- .cats-links -->
                                 </header><!-- .entry-header -->
 
                                 <div class="entry-content">
-                                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris. Lorem ipsum dolor sit amet, consectetur.</p>
+                                    <p class="m-0">{{$oncelikli_bagis->bagis_slogan}}.</p>
                                 </div><!-- .entry-content -->
 
                                 <div class="entry-footer mt-5">
-                                    <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
+                                    <a href="{{route('bagis_yap',['slug'=>$oncelikli_bagis->slug])}}" class="btn gradient-bg mr-2">Bağış Yap</a>
                                 </div><!-- .entry-footer -->
                             </div><!-- .cause-content-wrap -->
 
@@ -351,23 +300,24 @@
                 <div class="col-12">
                     <div class="swiper-container causes-slider">
                         <div class="swiper-wrapper">
+                            @foreach(anasayfa::diger_bagislar() as $diger_bagis)
                             <div class="swiper-slide">
                                 <div class="cause-wrap">
                                     <figure class="m-0">
-                                        <img src="images/cause-1.jpg" alt="">
+                                        <img src="{{$diger_bagis->bagis_resmi}}" height="300px" alt="">
 
                                         <div class="figure-overlay d-flex justify-content-center align-items-center position-absolute w-100 h-100">
-                                            <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
+                                            <a href="{{route('bagis_yap',['slug'=>$diger_bagis->slug])}}" class="btn gradient-bg mr-2">Bağış Yap</a>
                                         </div><!-- .figure-overlay -->
                                     </figure>
 
                                     <div class="cause-content-wrap">
                                         <header class="entry-header d-flex flex-wrap align-items-center">
-                                            <h3 class="entry-title w-100 m-0"><a href="#">Bring water to the childrens</a></h3>
+                                            <h3 class="entry-title w-100 m-0"><a href="#">{{$diger_bagis->bagis_slogan}}</a></h3>
                                         </header><!-- .entry-header -->
 
                                         <div class="entry-content">
-                                            <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris.</p>
+                                            <p class="m-0">{{$diger_bagis->bagis_adi}}.</p>
                                         </div><!-- .entry-content -->
 
                                         <div class="fund-raised w-100">
@@ -376,232 +326,23 @@
                                                     <span class="tip"></span>
                                                 </div><!-- .tipWrap -->
 
-                                                <span class="fill" data-percentage="83"></span>
+                                                <span class="fill" data-percentage="50"></span>
                                             </div><!-- .fund-raised-bar -->
 
                                             <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
                                                 <div class="fund-raised-total mt-4">
-                                                    Raised: $56 880
+                                                    Toplanan Tutar: 10.000,00 TL
                                                 </div><!-- .fund-raised-total -->
 
                                                 <div class="fund-raised-goal mt-4">
-                                                    Goal: $70 000
+                                                    Hedef Tutar: {{anasayfa::turk_parasi_yap($diger_bagis->bagis_tutar)}}
                                                 </div><!-- .fund-raised-goal -->
                                             </div><!-- .fund-raised-details -->
                                         </div><!-- .fund-raised -->
                                     </div><!-- .cause-content-wrap -->
                                 </div><!-- .cause-wrap -->
                             </div><!-- .swiper-slide -->
-
-                            <div class="swiper-slide">
-                                <div class="cause-wrap">
-                                    <figure class="m-0">
-                                        <img src="images/cause-2.jpg" alt="">
-
-                                        <div class="figure-overlay d-flex justify-content-center align-items-center position-absolute w-100 h-100">
-                                            <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
-                                        </div><!-- .figure-overlay -->
-                                    </figure>
-
-                                    <div class="cause-content-wrap">
-                                        <header class="entry-header d-flex flex-wrap align-items-center">
-                                            <h3 class="entry-title w-100 m-0"><a href="#">Education for all</a></h3>
-                                        </header><!-- .entry-header -->
-
-                                        <div class="entry-content">
-                                            <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris.</p>
-                                        </div><!-- .entry-content -->
-
-                                        <div class="fund-raised w-100">
-                                            <div class="fund-raised-bar-2 barfiller">
-                                                <div class="tipWrap">
-                                                    <span class="tip"></span>
-                                                </div><!-- .tipWrap -->
-
-                                                <span class="fill" data-percentage="70"></span>
-                                            </div><!-- .fund-raised-bar -->
-
-                                            <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
-                                                <div class="fund-raised-total mt-4">
-                                                    Raised: $56 880
-                                                </div><!-- .fund-raised-total -->
-
-                                                <div class="fund-raised-goal mt-4">
-                                                    Goal: $70 000
-                                                </div><!-- .fund-raised-goal -->
-                                            </div><!-- .fund-raised-details -->
-                                        </div><!-- .fund-raised -->
-                                    </div><!-- .cause-content-wrap -->
-                                </div><!-- .cause-wrap -->
-                            </div><!-- .swiper-slide -->
-
-                            <div class="swiper-slide">
-                                <div class="cause-wrap">
-                                    <figure class="m-0">
-                                        <img src="images/cause-3.jpg" alt="">
-
-                                        <div class="figure-overlay d-flex justify-content-center align-items-center position-absolute w-100 h-100">
-                                            <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
-                                        </div><!-- .figure-overlay -->
-                                    </figure>
-
-                                    <div class="cause-content-wrap">
-                                        <header class="entry-header d-flex flex-wrap align-items-center">
-                                            <h3 class="entry-title w-100 m-0"><a href="#">Bring water to the childrens</a></h3>
-                                        </header><!-- .entry-header -->
-
-                                        <div class="entry-content">
-                                            <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris.</p>
-                                        </div><!-- .entry-content -->
-
-                                        <div class="fund-raised w-100">
-                                            <div class="fund-raised-bar-3 barfiller">
-                                                <div class="tipWrap">
-                                                    <span class="tip"></span>
-                                                </div><!-- .tipWrap -->
-
-                                                <span class="fill" data-percentage="83"></span>
-                                            </div><!-- .fund-raised-bar -->
-
-                                            <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
-                                                <div class="fund-raised-total mt-4">
-                                                    Raised: $56 880
-                                                </div><!-- .fund-raised-total -->
-
-                                                <div class="fund-raised-goal mt-4">
-                                                    Goal: $70 000
-                                                </div><!-- .fund-raised-goal -->
-                                            </div><!-- .fund-raised-details -->
-                                        </div><!-- .fund-raised -->
-                                    </div><!-- .cause-content-wrap -->
-                                </div><!-- .cause-wrap -->
-                            </div><!-- .swiper-slide -->
-
-                            <div class="swiper-slide">
-                                <div class="cause-wrap">
-                                    <figure class="m-0">
-                                        <img src="images/cause-1.jpg" alt="">
-
-                                        <div class="figure-overlay d-flex justify-content-center align-items-center position-absolute w-100 h-100">
-                                            <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
-                                        </div><!-- .figure-overlay -->
-                                    </figure>
-
-                                    <div class="cause-content-wrap">
-                                        <header class="entry-header d-flex flex-wrap align-items-center">
-                                            <h3 class="entry-title w-100 m-0"><a href="#">Bring water to the childrens</a></h3>
-                                        </header><!-- .entry-header -->
-
-                                        <div class="entry-content">
-                                            <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris.</p>
-                                        </div><!-- .entry-content -->
-
-                                        <div class="fund-raised w-100">
-                                            <div class="fund-raised-bar-4 barfiller">
-                                                <div class="tipWrap">
-                                                    <span class="tip"></span>
-                                                </div><!-- .tipWrap -->
-
-                                                <span class="fill" data-percentage="83"></span>
-                                            </div><!-- .fund-raised-bar -->
-
-                                            <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
-                                                <div class="fund-raised-total mt-4">
-                                                    Raised: $56 880
-                                                </div><!-- .fund-raised-total -->
-
-                                                <div class="fund-raised-goal mt-4">
-                                                    Goal: $70 000
-                                                </div><!-- .fund-raised-goal -->
-                                            </div><!-- .fund-raised-details -->
-                                        </div><!-- .fund-raised -->
-                                    </div><!-- .cause-content-wrap -->
-                                </div><!-- .cause-wrap -->
-                            </div><!-- .swiper-slide -->
-
-                            <div class="swiper-slide">
-                                <div class="cause-wrap">
-                                    <figure class="m-0">
-                                        <img src="images/cause-2.jpg" alt="">
-
-                                        <div class="figure-overlay d-flex justify-content-center align-items-center position-absolute w-100 h-100">
-                                            <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
-                                        </div><!-- .figure-overlay -->
-                                    </figure>
-
-                                    <div class="cause-content-wrap">
-                                        <header class="entry-header d-flex flex-wrap align-items-center">
-                                            <h3 class="entry-title w-100 m-0"><a href="#">Education for all</a></h3>
-                                        </header><!-- .entry-header -->
-
-                                        <div class="entry-content">
-                                            <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris.</p>
-                                        </div><!-- .entry-content -->
-
-                                        <div class="fund-raised w-100">
-                                            <div class="fund-raised-bar-5 barfiller">
-                                                <div class="tipWrap">
-                                                    <span class="tip"></span>
-                                                </div><!-- .tipWrap -->
-
-                                                <span class="fill" data-percentage="70"></span>
-                                            </div><!-- .fund-raised-bar -->
-
-                                            <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
-                                                <div class="fund-raised-total mt-4">
-                                                    Raised: $56 880
-                                                </div><!-- .fund-raised-total -->
-
-                                                <div class="fund-raised-goal mt-4">
-                                                    Goal: $70 000
-                                                </div><!-- .fund-raised-goal -->
-                                            </div><!-- .fund-raised-details -->
-                                        </div><!-- .fund-raised -->
-                                    </div><!-- .cause-content-wrap -->
-                                </div><!-- .cause-wrap -->
-                            </div><!-- .swiper-slide -->
-
-                            <div class="swiper-slide">
-                                <div class="cause-wrap">
-                                    <figure class="m-0">
-                                        <img src="images/cause-3.jpg" alt="">
-
-                                        <div class="figure-overlay d-flex justify-content-center align-items-center position-absolute w-100 h-100">
-                                            <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
-                                        </div><!-- .figure-overlay -->
-                                    </figure>
-
-                                    <div class="cause-content-wrap">
-                                        <header class="entry-header d-flex flex-wrap align-items-center">
-                                            <h3 class="entry-title w-100 m-0"><a href="#">Bring water to the childrens</a></h3>
-                                        </header><!-- .entry-header -->
-
-                                        <div class="entry-content">
-                                            <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris.</p>
-                                        </div><!-- .entry-content -->
-
-                                        <div class="fund-raised w-100">
-                                            <div class="fund-raised-bar-6 barfiller">
-                                                <div class="tipWrap">
-                                                    <span class="tip"></span>
-                                                </div><!-- .tipWrap -->
-
-                                                <span class="fill" data-percentage="83"></span>
-                                            </div><!-- .fund-raised-bar -->
-
-                                            <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
-                                                <div class="fund-raised-total mt-4">
-                                                    Raised: $56 880
-                                                </div><!-- .fund-raised-total -->
-
-                                                <div class="fund-raised-goal mt-4">
-                                                    Goal: $70 000
-                                                </div><!-- .fund-raised-goal -->
-                                            </div><!-- .fund-raised-details -->
-                                        </div><!-- .fund-raised -->
-                                    </div><!-- .cause-content-wrap -->
-                                </div><!-- .cause-wrap -->
-                            </div><!-- .swiper-slide -->
+                            @endforeach
                         </div><!-- .swiper-wrapper -->
 
                     </div><!-- .swiper-container -->
@@ -626,7 +367,7 @@
                     <div class="section-heading">
                         <h2 class="entry-title">Türkiye'de ve Dünyada problem yaşayan tüm çocuklara yardım etmeyi seviyoruz. 15 yıl sonra elde ettiğimiz birçok hedef var.</h2>
 
-                        <p class="mt-5">Bağışçı Ol istatistikleri</p>
+
                     </div><!-- .section-heading -->
                 </div><!-- .col -->
 

@@ -330,11 +330,11 @@ a:hover, a:active {
 }
 
 .hero-slider .swiper-button-next {
-    right: 80px;
+   /* right: 80px;*/
 }
 
 .hero-slider .swiper-button-prev {
-    left: 80px;
+    /*left: 80px;*/
 }
 
 .hero-slider .swiper-button-next span,
@@ -2130,4 +2130,18 @@ ul.tabs-nav .tab-nav.active {
     color: #7b7b7b;
     background: #131212;
     text-align: center;
+}
+
+.menu-profil {
+    width: 150px;
+    display: block;
+    padding: 16px 0;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    color: #262626;
+    text-decoration: none;
+    transition: color .35s;
+    padding-top: 30px;
+    padding-left: 15px;
 }

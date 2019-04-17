@@ -208,6 +208,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'anasayfa' =>App\Http\Controllers\AnasayfaController::class,
+        'carbon'=>\Illuminate\Support\Carbon::class,
 
     ],
 

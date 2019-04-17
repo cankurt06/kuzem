@@ -58,8 +58,21 @@
                             <li @if(Route::getFacadeRoot()->current()->getName()=="bagislar") class="current-menu-item" @endif ><a href="{{route('bagislar')}}">Bağışlar</a></li>
                             <li @if(Route::getFacadeRoot()->current()->getName()=="haberler") class="current-menu-item" @endif ><a href="{{route('haberler')}}">Haberler</a></li>
                             <li @if(Route::getFacadeRoot()->current()->getName()=="iletisim") class="current-menu-item" @endif ><a href="{{route('iletisim')}}">İletişim</a></li>
-                            <li @if(Route::getFacadeRoot()->current()->getName()=="login") class="current-menu-item" @endif ><a href="{{route('login')}}">Giriş Yap</a></li>
+                            @if(Auth::check())
                         </ul>
+                                <div class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle menu-profil"  href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="#">Profilim</a>
+                                        <a class="dropdown-item" href="#">Bağışlarım</a>
+                                        <a class="dropdown-item" href="{{route('cikis')}}">Çıkış Yap</a>
+                                    </div>
+                                </div>
+                                @else
+                                <li @if(Route::getFacadeRoot()->current()->getName()=="login") class="current-menu-item" @endif ><a href="{{route('login')}}">Giriş Yap</a></li>
+                        </ul>
+                                @endif
+
                     </nav><!-- .site-navigation -->
 
                     <div class="hamburger-menu d-lg-none">
@@ -80,7 +93,7 @@
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="foot-about">
-                        <h2><a class="foot-logo" href="#"><img src="images/foot-logo.png" alt=""></a></h2>
+                        <h2><a class="foot-logo" href="#"><img src="{{asset('images/foot-logo.png')}}" alt=""></a></h2>
 
                         <p>Bizlere,yardım kampanyalarımızı sosyal medyalarda paylaşarak,sayfalarımızı beğenerek de destek olabilirsiniz.</p>
 
@@ -181,6 +194,8 @@
 <script type='text/javascript' src='{{asset('js/circle-progress.min.js')}}'></script>
 <script type='text/javascript' src='{{asset('js/jquery.countTo.min.js')}}'></script>
 <script type='text/javascript' src='{{asset('js/jquery.barfiller.js')}}'></script>
+<script type='text/javascript' src='{{asset('js/popper.min.js')}}'></script>
+<script type='text/javascript' src='{{asset('js/bootstrap.min.js')}}'></script>
 <script type='text/javascript' src='{{asset('js/custom.js')}}'></script>
 </body>
 </html>
