@@ -25,31 +25,32 @@
             </div><!-- .row -->
 
             <div class="row">
+                    @foreach($aktif_bagislar as $aktif_bagis)
                 <div class="col-12 col-lg-6">
-                    <div class="cause-wrap d-flex flex-wrap justify-content-between">
+                    <div class="cause-wrap d-flex flex-wrap justify-content-between" style="height: 500px;max-height: 500px;">
                         <figure class="m-0">
-                            <img src="images/featured-causes.jpg" alt="">
+                            <img src="{{asset($aktif_bagis->bagis_resmi)}}" alt="" style="width: 250px;height: 300px">
                         </figure>
 
                         <div class="cause-content-wrap">
                             <header class="entry-header d-flex flex-wrap align-items-center">
-                                <h3 class="entry-title w-100 m-0"><a href="#">Fundraiser for Kids</a></h3>
+                                <h3 class="entry-title w-100 m-0"><a href="{{route('bagislar',["slug"=>$aktif_bagis->slug])}}">{{$aktif_bagis->bagis_adi}}</a></h3>
 
                                 <div class="posted-date">
-                                    <a href="#">Aug 25, 2018 </a>
+                                    <a href="#">{{carbon::parse($aktif_bagis->created_at)->format('d.m.Y')}} </a>
                                 </div><!-- .posted-date -->
 
                                 <div class="cats-links">
-                                    <a href="#">Ball Room New York</a>
+                                    <a href="#">{{$aktif_bagis->get_kategori->bagis_turu}}</a>
                                 </div><!-- .cats-links -->
                             </header><!-- .entry-header -->
 
                             <div class="entry-content">
-                                <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris. Lorem ipsum dolor sit amet, consectetur.</p>
+                                <p class="m-0">{{$aktif_bagis->bagis_slogan}}</p>
                             </div><!-- .entry-content -->
 
                             <div class="entry-footer mt-5">
-                                <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
+                                <a href="{{route('bagis_yap',["slug"=>$aktif_bagis->slug])}}" class="btn gradient-bg mr-2">Bağış Yap</a>
                             </div><!-- .entry-footer -->
                         </div><!-- .cause-content-wrap -->
 
@@ -59,72 +60,25 @@
                                     <span class="tip"></span>
                                 </div><!-- .tipWrap -->
 
-                                <span class="fill" data-percentage="83"></span>
+                                <span class="fill" data-percentage="{{anasayfa::bagis_tamamlama_orani($aktif_bagis->bagis_tutar,anasayfa::yapilan_bagis_toplami($aktif_bagis->id))}}"></span>
                             </div><!-- .fund-raised-bar -->
 
                             <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
                                 <div class="fund-raised-total mt-4">
-                                    Raised: $56 880
+                                    Tamamlanan Tutar: {{anasayfa::turk_parasi_yap(anasayfa::yapilan_bagis_toplami($aktif_bagis->id))}}
                                 </div><!-- .fund-raised-total -->
 
                                 <div class="fund-raised-goal mt-4">
-                                    Goal: $70 000
+                                    Hedef Tutar: {{anasayfa::turk_parasi_yap($aktif_bagis->bagis_tutar)}}
                                 </div><!-- .fund-raised-goal -->
                             </div><!-- .fund-raised-details -->
                         </div><!-- .fund-raised -->
                     </div><!-- .cause-wrap -->
                 </div><!-- .col -->
+                    @endforeach
 
-                <div class="col-12 col-lg-6">
-                    <div class="cause-wrap d-flex flex-wrap justify-content-between">
-                        <figure class="m-0">
-                            <img src="images/eye-for.jpg" alt="">
-                        </figure>
-
-                        <div class="cause-content-wrap">
-                            <header class="entry-header d-flex flex-wrap align-items-center">
-                                <h3 class="entry-title w-100 m-0"><a href="#">Fundraiser for Kids</a></h3>
-
-                                <div class="posted-date">
-                                    <a href="#">Aug 25, 2018 </a>
-                                </div><!-- .posted-date -->
-
-                                <div class="cats-links">
-                                    <a href="#">Ball Room New York</a>
-                                </div><!-- .cats-links -->
-                            </header><!-- .entry-header -->
-
-                            <div class="entry-content">
-                                <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris. Lorem ipsum dolor sit amet, consectetur.</p>
-                            </div><!-- .entry-content -->
-
-                            <div class="entry-footer mt-5">
-                                <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
-                            </div><!-- .entry-footer -->
-                        </div><!-- .cause-content-wrap -->
-
-                        <div class="fund-raised w-100">
-                            <div class="featured-fund-raised-bar barfiller">
-                                <div class="tipWrap">
-                                    <span class="tip"></span>
-                                </div><!-- .tipWrap -->
-
-                                <span class="fill" data-percentage="83"></span>
-                            </div><!-- .fund-raised-bar -->
-
-                            <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
-                                <div class="fund-raised-total mt-4">
-                                    Raised: $56 880
-                                </div><!-- .fund-raised-total -->
-
-                                <div class="fund-raised-goal mt-4">
-                                    Goal: $70 000
-                                </div><!-- .fund-raised-goal -->
-                            </div><!-- .fund-raised-details -->
-                        </div><!-- .fund-raised -->
-                    </div><!-- .cause-wrap -->
-                </div><!-- .col -->
             </div><!-- .row -->
+            <div>   {{ $aktif_bagislar->links('vendor.pagination.bootstrap-4') }}</div>
         </div><!-- .container -->
     </div><!-- .featured-cause -->
 
@@ -139,106 +93,62 @@
             </div><!-- .row -->
 
             <div class="row">
-                <div class="col-12 col-lg-6">
-                    <div class="cause-wrap d-flex flex-wrap justify-content-between">
-                        <figure class="m-0">
-                            <img src="images/featured-causes.jpg" alt="">
-                        </figure>
+                @foreach($yaklasan_bagislar as $yaklasan_bagis)
+                    <div class="col-12 col-lg-6">
+                        <div class="cause-wrap d-flex flex-wrap justify-content-between" style="height: 500px;max-height: 500px;">
+                            <figure class="m-0">
+                                <img src="{{asset($yaklasan_bagis->bagis_resmi)}}" alt="" style="width: 250px;height: 300px">
+                            </figure>
 
-                        <div class="cause-content-wrap">
-                            <header class="entry-header d-flex flex-wrap align-items-center">
-                                <h3 class="entry-title w-100 m-0"><a href="#">Fundraiser for Kids</a></h3>
+                            <div class="cause-content-wrap">
+                                <header class="entry-header d-flex flex-wrap align-items-center">
+                                    <h3 class="entry-title w-100 m-0"><a href="{{route('bagislar',["slug"=>$yaklasan_bagis->slug])}}">{{$yaklasan_bagis->bagis_adi}}</a></h3>
 
-                                <div class="posted-date">
-                                    <a href="#">Aug 25, 2018 </a>
-                                </div><!-- .posted-date -->
+                                    <div class="posted-date">
+                                        <a href="#">{{carbon::parse($yaklasan_bagis->created_at)->format('d.m.Y')}} </a>
+                                    </div><!-- .posted-date -->
 
-                                <div class="cats-links">
-                                    <a href="#">Ball Room New York</a>
-                                </div><!-- .cats-links -->
-                            </header><!-- .entry-header -->
+                                    <div class="cats-links">
+                                        <a href="#">{{$yaklasan_bagis->get_kategori->bagis_turu}}</a>
+                                    </div><!-- .cats-links -->
+                                </header><!-- .entry-header -->
 
-                            <div class="entry-content">
-                                <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris. Lorem ipsum dolor sit amet, consectetur.</p>
-                            </div><!-- .entry-content -->
+                                <div class="entry-content">
+                                    <p class="m-0">{{$yaklasan_bagis->bagis_slogan}}</p>
+                                </div><!-- .entry-content -->
 
-                            <div class="entry-footer mt-5">
-                                <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
-                            </div><!-- .entry-footer -->
-                        </div><!-- .cause-content-wrap -->
+                                <div class="entry-footer mt-5">
 
-                        <div class="fund-raised w-100">
-                            <div class="featured-fund-raised-bar barfiller">
-                                <div class="tipWrap">
-                                    <span class="tip"></span>
-                                </div><!-- .tipWrap -->
+                                </div><!-- .entry-footer -->
+                            </div><!-- .cause-content-wrap -->
 
-                                <span class="fill" data-percentage="83"></span>
-                            </div><!-- .fund-raised-bar -->
+                            <div class="fund-raised w-100">
+                                <div class="featured-fund-raised-bar barfiller">
+                                    <div class="tipWrap">
+                                        <span class="tip"></span>
+                                    </div><!-- .tipWrap -->
 
-                            <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
-                                <div class="fund-raised-total mt-4">
-                                    Raised: $56 880
-                                </div><!-- .fund-raised-total -->
+                                    <span class="fill" data-percentage="{{anasayfa::bagis_tamamlama_orani($yaklasan_bagis->bagis_tutar,anasayfa::yapilan_bagis_toplami($yaklasan_bagis->id))}}"></span>
+                                </div><!-- .fund-raised-bar -->
 
-                                <div class="fund-raised-goal mt-4">
-                                    Goal: $70 000
-                                </div><!-- .fund-raised-goal -->
-                            </div><!-- .fund-raised-details -->
-                        </div><!-- .fund-raised -->
-                    </div><!-- .cause-wrap -->
-                </div><!-- .col -->
+                                <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
+                                    <div class="fund-raised-total mt-4">
+                                        Tamamlanan Tutar: {{anasayfa::turk_parasi_yap(anasayfa::yapilan_bagis_toplami($yaklasan_bagis->id))}}
+                                    </div><!-- .fund-raised-total -->
 
-                <div class="col-12 col-lg-6">
-                    <div class="cause-wrap d-flex flex-wrap justify-content-between">
-                        <figure class="m-0">
-                            <img src="images/eye-for.jpg" alt="">
-                        </figure>
+                                    <div class="fund-raised-goal mt-4">
+                                        Hedef Tutar: {{anasayfa::turk_parasi_yap($yaklasan_bagis->bagis_tutar)}}
+                                    </div><!-- .fund-raised-goal -->
+                                </div><!-- .fund-raised-details -->
+                            </div><!-- .fund-raised -->
+                        </div><!-- .cause-wrap -->
+                    </div><!-- .col -->
+                @endforeach
 
-                        <div class="cause-content-wrap">
-                            <header class="entry-header d-flex flex-wrap align-items-center">
-                                <h3 class="entry-title w-100 m-0"><a href="#">Fundraiser for Kids</a></h3>
-
-                                <div class="posted-date">
-                                    <a href="#">Aug 25, 2018 </a>
-                                </div><!-- .posted-date -->
-
-                                <div class="cats-links">
-                                    <a href="#">Ball Room New York</a>
-                                </div><!-- .cats-links -->
-                            </header><!-- .entry-header -->
-
-                            <div class="entry-content">
-                                <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris. Lorem ipsum dolor sit amet, consectetur.</p>
-                            </div><!-- .entry-content -->
-
-                            <div class="entry-footer mt-5">
-                                <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
-                            </div><!-- .entry-footer -->
-                        </div><!-- .cause-content-wrap -->
-
-                        <div class="fund-raised w-100">
-                            <div class="featured-fund-raised-bar barfiller">
-                                <div class="tipWrap">
-                                    <span class="tip"></span>
-                                </div><!-- .tipWrap -->
-
-                                <span class="fill" data-percentage="83"></span>
-                            </div><!-- .fund-raised-bar -->
-
-                            <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
-                                <div class="fund-raised-total mt-4">
-                                    Raised: $56 880
-                                </div><!-- .fund-raised-total -->
-
-                                <div class="fund-raised-goal mt-4">
-                                    Goal: $70 000
-                                </div><!-- .fund-raised-goal -->
-                            </div><!-- .fund-raised-details -->
-                        </div><!-- .fund-raised -->
-                    </div><!-- .cause-wrap -->
-                </div><!-- .col -->
             </div><!-- .row -->
+            <div>
+                {{ $yaklasan_bagislar->links('vendor.pagination.bootstrap-4') }}
+            </div>
         </div><!-- .container -->
     </div><!-- .featured-cause -->
 
@@ -253,106 +163,60 @@
             </div><!-- .row -->
 
             <div class="row">
-                <div class="col-12 col-lg-6">
-                    <div class="cause-wrap d-flex flex-wrap justify-content-between">
-                        <figure class="m-0">
-                            <img src="images/featured-causes.jpg" alt="">
-                        </figure>
+                @foreach($tamamlanan_bagislar as $tamamlanan_bagis)
+                    <div class="col-12 col-lg-6">
+                        <div class="cause-wrap d-flex flex-wrap justify-content-between" style="height: 500px;max-height: 500px;">
+                            <figure class="m-0">
+                                <img src="{{asset($tamamlanan_bagis->bagis_resmi)}}" alt="" style="width: 250px;height: 300px">
+                            </figure>
 
-                        <div class="cause-content-wrap">
-                            <header class="entry-header d-flex flex-wrap align-items-center">
-                                <h3 class="entry-title w-100 m-0"><a href="#">Fundraiser for Kids</a></h3>
+                            <div class="cause-content-wrap">
+                                <header class="entry-header d-flex flex-wrap align-items-center">
+                                    <h3 class="entry-title w-100 m-0"><a href="{{route('bagislar',["slug"=>$tamamlanan_bagis->slug])}}">{{$tamamlanan_bagis->bagis_adi}}</a></h3>
 
-                                <div class="posted-date">
-                                    <a href="#">Aug 25, 2018 </a>
-                                </div><!-- .posted-date -->
+                                    <div class="posted-date">
+                                        <a href="#">{{carbon::parse($tamamlanan_bagis->created_at)->format('d.m.Y')}} </a>
+                                    </div><!-- .posted-date -->
 
-                                <div class="cats-links">
-                                    <a href="#">Ball Room New York</a>
-                                </div><!-- .cats-links -->
-                            </header><!-- .entry-header -->
+                                    <div class="cats-links">
+                                        <a href="#">{{$tamamlanan_bagis->get_kategori->bagis_turu}}</a>
+                                    </div><!-- .cats-links -->
+                                </header><!-- .entry-header -->
 
-                            <div class="entry-content">
-                                <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris. Lorem ipsum dolor sit amet, consectetur.</p>
-                            </div><!-- .entry-content -->
+                                <div class="entry-content">
+                                    <p class="m-0">{{$tamamlanan_bagis->bagis_slogan}}</p>
+                                </div><!-- .entry-content -->
 
-                            <div class="entry-footer mt-5">
-                                <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
-                            </div><!-- .entry-footer -->
-                        </div><!-- .cause-content-wrap -->
+                                <div class="entry-footer mt-5">
 
-                        <div class="fund-raised w-100">
-                            <div class="featured-fund-raised-bar barfiller">
-                                <div class="tipWrap">
-                                    <span class="tip"></span>
-                                </div><!-- .tipWrap -->
+                                </div><!-- .entry-footer -->
+                            </div><!-- .cause-content-wrap -->
 
-                                <span class="fill" data-percentage="83"></span>
-                            </div><!-- .fund-raised-bar -->
+                            <div class="fund-raised w-100">
+                                <div class="featured-fund-raised-bar barfiller">
+                                    <div class="tipWrap">
+                                        <span class="tip"></span>
+                                    </div><!-- .tipWrap -->
 
-                            <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
-                                <div class="fund-raised-total mt-4">
-                                    Raised: $56 880
-                                </div><!-- .fund-raised-total -->
+                                    <span class="fill" data-percentage="{{anasayfa::bagis_tamamlama_orani($tamamlanan_bagis->bagis_tutar,anasayfa::yapilan_bagis_toplami($tamamlanan_bagis->id))}}"></span>
+                                </div><!-- .fund-raised-bar -->
 
-                                <div class="fund-raised-goal mt-4">
-                                    Goal: $70 000
-                                </div><!-- .fund-raised-goal -->
-                            </div><!-- .fund-raised-details -->
-                        </div><!-- .fund-raised -->
-                    </div><!-- .cause-wrap -->
-                </div><!-- .col -->
+                                <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
+                                    <div class="fund-raised-total mt-4">
+                                        Tamamlanan Tutar: {{anasayfa::turk_parasi_yap(anasayfa::yapilan_bagis_toplami($tamamlanan_bagis->id))}}
+                                    </div><!-- .fund-raised-total -->
 
-                <div class="col-12 col-lg-6">
-                    <div class="cause-wrap d-flex flex-wrap justify-content-between">
-                        <figure class="m-0">
-                            <img src="images/eye-for.jpg" alt="">
-                        </figure>
+                                    <div class="fund-raised-goal mt-4">
+                                        Hedef Tutar: {{anasayfa::turk_parasi_yap($tamamlanan_bagis->bagis_tutar)}}
+                                    </div><!-- .fund-raised-goal -->
+                                </div><!-- .fund-raised-details -->
+                            </div><!-- .fund-raised -->
+                        </div><!-- .cause-wrap -->
+                    </div><!-- .col -->
+                @endforeach
 
-                        <div class="cause-content-wrap">
-                            <header class="entry-header d-flex flex-wrap align-items-center">
-                                <h3 class="entry-title w-100 m-0"><a href="#">Fundraiser for Kids</a></h3>
-
-                                <div class="posted-date">
-                                    <a href="#">Aug 25, 2018 </a>
-                                </div><!-- .posted-date -->
-
-                                <div class="cats-links">
-                                    <a href="#">Ball Room New York</a>
-                                </div><!-- .cats-links -->
-                            </header><!-- .entry-header -->
-
-                            <div class="entry-content">
-                                <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris. Lorem ipsum dolor sit amet, consectetur.</p>
-                            </div><!-- .entry-content -->
-
-                            <div class="entry-footer mt-5">
-                                <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
-                            </div><!-- .entry-footer -->
-                        </div><!-- .cause-content-wrap -->
-
-                        <div class="fund-raised w-100">
-                            <div class="featured-fund-raised-bar barfiller">
-                                <div class="tipWrap">
-                                    <span class="tip"></span>
-                                </div><!-- .tipWrap -->
-
-                                <span class="fill" data-percentage="83"></span>
-                            </div><!-- .fund-raised-bar -->
-
-                            <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
-                                <div class="fund-raised-total mt-4">
-                                    Raised: $56 880
-                                </div><!-- .fund-raised-total -->
-
-                                <div class="fund-raised-goal mt-4">
-                                    Goal: $70 000
-                                </div><!-- .fund-raised-goal -->
-                            </div><!-- .fund-raised-details -->
-                        </div><!-- .fund-raised -->
-                    </div><!-- .cause-wrap -->
-                </div><!-- .col -->
             </div><!-- .row -->
+            <div>    {{ $tamamlanan_bagislar->links('vendor.pagination.bootstrap-4') }}</div>
         </div><!-- .container -->
     </div><!-- .featured-cause -->
 @endsection

@@ -1664,17 +1664,23 @@ ul.tabs-nav .tab-nav.active {
 }
 
 .pagination a {
-    margin-right: 16px;
-    font-size: 12px;
-    font-weight: 500;
     line-height: 1;
-    color: #262626;
+    color: #ff3900;
     text-decoration: navajowhite;
+    height: 38px;
 }
 
 .pagination a:hover,
 .pagination .active a {
     color: #ff3900;
+    font-weight: 600;
+}
+
+.page-item.active .page-link {
+    z-index: 2;
+    color: #fff;
+    background-color: #ff3900;
+    border-color: #ff3900;
 }
 
 /*--------------------------------------------------------------
@@ -2145,3 +2151,5 @@ ul.tabs-nav .tab-nav.active {
     padding-top: 30px;
     padding-left: 15px;
 }
+
+.our-causes .swiper-container {padding-left: 15px!important;}

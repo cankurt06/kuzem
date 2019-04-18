@@ -22,16 +22,6 @@
                         <h2>Bize Ulaşın</h2>
 
                         <p>Düşünce ve fikirlerinizi bizimle paylaşabilir, sistem hakkında bilgi alabilirsiniz.</p>
-
-                        <ul class="contact-social d-flex flex-wrap align-items-center">
-                            <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        </ul>
-
                         <ul class="contact-info p-0">
                             <li><i class="fa fa-phone"></i><span>+90 312 111 1 111</span></li>
                             <li><i class="fa fa-envelope"></i><span>iletisim@kuzemodevim.site</span></li>
@@ -41,16 +31,25 @@
                 </div><!-- .col -->
 
                 <div class="col-12 col-lg-7">
-                    <form class="contact-form">
-                        <input type="text" placeholder="İsim">
-                        <input type="email" placeholder="Eposta">
-                        <textarea rows="15" cols="6" placeholder="Mesaj"></textarea>
-
+                    <form class="contact-form" action="{{route('bize_yazin')}}" method="POST">
+                        @csrf
+                        <input type="text" name="isim" placeholder="İsim" required="required">
+                        <input type="email" name="eposta" placeholder="Eposta" required="required">
+                        <textarea rows="15" cols="6" name="mesaj" placeholder="Mesaj" required="required"></textarea>
                         <span>
                             <input class="btn gradient-bg" type="submit" value="Gönder">
                         </span>
                     </form><!-- .contact-form -->
-
+                    @if (session('basarili'))
+                        <div class="alert alert-success" role="alert">
+                            Mesajınız Başarıyla İletildi.
+                        </div>
+                    @endif
+                    @if (session('hata'))
+                        <div class="alert alert-danger" role="alert">
+                            {{session('hata')}}
+                        </div>
+                    @endif
                 </div><!-- .col -->
             </div><!-- .row -->
         </div><!-- .container -->

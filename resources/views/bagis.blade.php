@@ -32,16 +32,16 @@
                                 <span class="tip"></span>
                             </div><!-- .tipWrap -->
 
-                            <span class="fill" data-percentage="83"></span>
+                            <span class="fill" data-percentage="{{anasayfa::bagis_tamamlama_orani($bagis->bagis_tutar,anasayfa::yapilan_bagis_toplami($bagis->id))}}"></span>
                         </div><!-- .fund-raised-bar -->
 
                         <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
                             <div class="fund-raised-total mt-4">
-                                Raised: $56 880
+                                Tamamlanan Tutar: {{anasayfa::turk_parasi_yap(anasayfa::yapilan_bagis_toplami($bagis->id))}}
                             </div><!-- .fund-raised-total -->
 
                             <div class="fund-raised-goal mt-4">
-                                Goal: $70 000
+                                Hedef Tutar: {{anasayfa::turk_parasi_yap($bagis->bagis_tutar)}}
                             </div><!-- .fund-raised-goal -->
                         </div><!-- .fund-raised-details -->
                     </div><!-- .fund-raised -->

@@ -140,90 +140,35 @@
                         <div class="section-heading">
                             <h2 class="entry-title">Yaklaşan Bağışlar</h2>
                         </div><!-- .section-heading -->
+                            @foreach(anasayfa::yaklasan_bagislar() as $yaklasan_bagis)
+                            <div class="event-wrap d-flex flex-wrap justify-content-between">
+                                <figure class="m-0">
+                                    <img src="{{$yaklasan_bagis->bagis_resmi}}" alt="">
+                                </figure>
 
-                        <div class="event-wrap d-flex flex-wrap justify-content-between">
-                            <figure class="m-0">
-                                <img src="images/event-1.jpg" alt="">
-                            </figure>
+                                <div class="event-content-wrap">
+                                    <header class="entry-header d-flex flex-wrap align-items-center">
+                                        <h3 class="entry-title w-100 m-0"><a href="{{route('bagislar',['slug'=>$yaklasan_bagis->slug])}}">{{$yaklasan_bagis->bagis_adi}}</a></h3>
 
-                            <div class="event-content-wrap">
-                                <header class="entry-header d-flex flex-wrap align-items-center">
-                                    <h3 class="entry-title w-100 m-0"><a href="#">Fundraiser for Kids</a></h3>
+                                        <div class="posted-date">
+                                            <a href="#">{{carbon::parse($yaklasan_bagis->created_at)->format('d.m.Y')}} </a>
+                                        </div><!-- .posted-date -->
 
-                                    <div class="posted-date">
-                                        <a href="#">Aug 25, 2018 </a>
-                                    </div><!-- .posted-date -->
+                                        <div class="cats-links">
+                                            <a href="#">{{$yaklasan_bagis->get_kategori->bagis_turu}}</a>
+                                        </div><!-- .cats-links -->
+                                    </header><!-- .entry-header -->
 
-                                    <div class="cats-links">
-                                        <a href="#">Ball Room New York</a>
-                                    </div><!-- .cats-links -->
-                                </header><!-- .entry-header -->
+                                    <div class="entry-content">
+                                        <p class="m-0">{{$yaklasan_bagis->bagis_slogan}}</p>
+                                    </div><!-- .entry-content -->
 
-                                <div class="entry-content">
-                                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris.</p>
-                                </div><!-- .entry-content -->
-
-                                <div class="entry-footer">
-                                    <a href="#">Read More</a>
-                                </div><!-- .entry-footer -->
-                            </div><!-- .event-content-wrap -->
-                        </div><!-- .event-wrap -->
-
-                        <div class="event-wrap d-flex flex-wrap justify-content-between">
-                            <figure class="m-0">
-                                <img src="images/event-2.jpg" alt="">
-                            </figure>
-
-                            <div class="event-content-wrap">
-                                <header class="entry-header d-flex flex-wrap align-items-center">
-                                    <h3 class="entry-title w-100 m-0"><a href="#">Bring water to the childrens</a></h3>
-
-                                    <div class="posted-date">
-                                        <a href="#">Aug 25, 2018 </a>
-                                    </div><!-- .posted-date -->
-
-                                    <div class="cats-links">
-                                        <a href="#">Ball Room New York</a>
-                                    </div><!-- .cats-links -->
-                                </header><!-- .entry-header -->
-
-                                <div class="entry-content">
-                                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris.</p>
-                                </div><!-- .entry-content -->
-
-                                <div class="entry-footer">
-                                    <a href="#">Read More</a>
-                                </div><!-- .entry-footer -->
-                            </div><!-- .event-content-wrap -->
-                        </div><!-- .event-wrap -->
-
-                        <div class="event-wrap d-flex flex-wrap justify-content-between">
-                            <figure class="m-0">
-                                <img src="images/event-3.jpg" alt="">
-                            </figure>
-
-                            <div class="event-content-wrap">
-                                <header class="entry-header d-flex flex-wrap align-items-center">
-                                    <h3 class="entry-title w-100 m-0"><a href="#">Bring water to the childrens</a></h3>
-
-                                    <div class="posted-date">
-                                        <a href="#">Aug 25, 2018 </a>
-                                    </div><!-- .posted-date -->
-
-                                    <div class="cats-links">
-                                        <a href="#">Ball Room New York</a>
-                                    </div><!-- .cats-links -->
-                                </header><!-- .entry-header -->
-
-                                <div class="entry-content">
-                                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris.</p>
-                                </div><!-- .entry-content -->
-
-                                <div class="entry-footer">
-                                    <a href="#">Read More</a>
-                                </div><!-- .entry-footer -->
-                            </div><!-- .event-content-wrap -->
-                        </div><!-- .event-wrap -->
+                                    <div class="entry-footer">
+                                        <a href="{{route('bagislar',['slug'=>$yaklasan_bagis->slug])}}">Detaylı Bilgi</a>
+                                    </div><!-- .entry-footer -->
+                                </div><!-- .event-content-wrap -->
+                            </div><!-- .event-wrap -->
+                                @endforeach
                     </div><!-- .upcoming-events -->
                 </div><!-- .col -->
 
@@ -240,7 +185,7 @@
 
                             <div class="cause-content-wrap">
                                 <header class="entry-header d-flex flex-wrap align-items-center">
-                                    <h3 class="entry-title w-100 m-0"><a href="#">{{$oncelikli_bagis->bagis_adi}}</a></h3>
+                                    <h3 class="entry-title w-100 m-0"><a href="{{route('bagislar',['slug'=>$oncelikli_bagis->slug])}}">{{$oncelikli_bagis->bagis_adi}}</a></h3>
 
                                     <div class="posted-date">
                                         <a href="#">{{carbon::parse($oncelikli_bagis->created_at)->format('d.m.Y')}} </a>
@@ -266,16 +211,16 @@
                                         <span class="tip"></span>
                                     </div><!-- .tipWrap -->
 
-                                    <span class="fill" data-percentage="83"></span>
+                                    <span class="fill" data-percentage="{{anasayfa::bagis_tamamlama_orani($oncelikli_bagis->bagis_tutar,anasayfa::yapilan_bagis_toplami($oncelikli_bagis->id))}}"></span>
                                 </div><!-- .fund-raised-bar -->
 
                                 <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
                                     <div class="fund-raised-total mt-4">
-                                        Raised: $56 880
+                                        Tamamlanan Tutar: {{anasayfa::turk_parasi_yap(anasayfa::yapilan_bagis_toplami($oncelikli_bagis->id))}}
                                     </div><!-- .fund-raised-total -->
 
                                     <div class="fund-raised-goal mt-4">
-                                        Goal: $70 000
+                                        Hedef Tutar: {{anasayfa::turk_parasi_yap($oncelikli_bagis->bagis_tutar)}}
                                     </div><!-- .fund-raised-goal -->
                                 </div><!-- .fund-raised-details -->
                             </div><!-- .fund-raised -->
@@ -313,11 +258,11 @@
 
                                     <div class="cause-content-wrap">
                                         <header class="entry-header d-flex flex-wrap align-items-center">
-                                            <h3 class="entry-title w-100 m-0"><a href="#">{{$diger_bagis->bagis_slogan}}</a></h3>
+                                            <h3 class="entry-title w-100 m-0"><a href="{{route('bagislar',['slug'=>$oncelikli_bagis->slug])}}">{{$diger_bagis->bagis_adi}}</a></h3>
                                         </header><!-- .entry-header -->
 
                                         <div class="entry-content">
-                                            <p class="m-0">{{$diger_bagis->bagis_adi}}.</p>
+                                            <p class="m-0">{{$diger_bagis->bagis_slogan}}.</p>
                                         </div><!-- .entry-content -->
 
                                         <div class="fund-raised w-100">
@@ -326,12 +271,12 @@
                                                     <span class="tip"></span>
                                                 </div><!-- .tipWrap -->
 
-                                                <span class="fill" data-percentage="50"></span>
+                                                <span class="fill" data-percentage="{{anasayfa::bagis_tamamlama_orani($diger_bagis->bagis_tutar,anasayfa::yapilan_bagis_toplami($diger_bagis->id))}}"></span>
                                             </div><!-- .fund-raised-bar -->
 
                                             <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
                                                 <div class="fund-raised-total mt-4">
-                                                    Toplanan Tutar: 10.000,00 TL
+                                                    Tamamlanan Tutar: {{anasayfa::turk_parasi_yap(anasayfa::yapilan_bagis_toplami($diger_bagis->id))}}
                                                 </div><!-- .fund-raised-total -->
 
                                                 <div class="fund-raised-goal mt-4">
@@ -380,7 +325,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-center align-items-baseline">
-                                    <div class="start-counter" data-to="120" data-speed="2000"></div>
+                                    <div class="start-counter" data-to="{{\App\SiteAyarlari::where('ayar_adi','yardim_sayisi')->first()->deger}}" data-speed="1000"></div>
                                     <div class="counter-k">Bin</div>
                                 </div>
 
@@ -395,7 +340,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-center align-items-baseline">
-                                    <div class="start-counter" data-to="79" data-speed="2000"></div>
+                                    <div class="start-counter" data-to="{{\App\SiteAyarlari::where('ayar_adi','su_kuyusu')->first()->deger}}" data-speed="1000"></div>
                                 </div>
 
                                 <h3 class="entry-title">Su Kuyusu Açıldı</h3><!-- entry-title -->
@@ -409,7 +354,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-center align-items-baseline">
-                                    <div class="start-counter" data-to="253" data-speed="2000"></div>
+                                    <div class="start-counter" data-to="{{\App\User::selectRaw('COUNT(id) AS KISI')->first()->KISI}}" data-speed="1000"></div>
                                 </div>
 
                                 <h3 class="entry-title">Bağışçımız Var</h3><!-- entry-title -->

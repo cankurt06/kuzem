@@ -36,7 +36,7 @@
 
                 <div class="col-12 col-lg-4 d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
                     <div class="donate-btn">
-                        <a href="#"><i class="fa fa-heart-o"></i> Bağış Yap</a>
+                        <a href="{{route('bagislar')}}"><i class="fa fa-heart-o"></i> Bağış Yap</a>
                     </div><!-- .donate-btn -->
                 </div><!-- .col -->
             </div><!-- .row -->
@@ -125,22 +125,13 @@
                 <div class="col-12 col-md-6 col-lg-3 mt-5 mt-md-0">
                     <div class="foot-latest-news">
                         <h2>Yeni Haberler</h2>
-
                         <ul>
-                            <li>
-                                <h3><a href="#">A new cause to help</a></h3>
-                                <div class="posted-date">MArch 12, 2018</div>
-                            </li>
-
-                            <li>
-                                <h3><a href="#">We love to help people</a></h3>
-                                <div class="posted-date">MArch 12, 2018</div>
-                            </li>
-
-                            <li>
-                                <h3><a href="#">The new ideas for helping</a></h3>
-                                <div class="posted-date">MArch 12, 2018</div>
-                            </li>
+                            @foreach(anasayfa::footer_haberler() as $footer_haber)
+                                <li>
+                                    <h3><a href="{{route('haberler',['slug'=>$footer_haber->slug])}}">{{$footer_haber->haber_baslik}}</a></h3>
+                                    <div class="posted-date">{{carbon::parse($footer_haber->created_at)->format('d.m.Y')}}</div>
+                                </li>
+                            @endforeach
                         </ul>
                     </div><!-- .foot-latest-news -->
                 </div><!-- .col -->
@@ -154,14 +145,6 @@
                             <li><i class="fa fa-map-marker"></i><span>Kızılay Mah. 1. Cad. No:1/1 Çankaya/ANKARA</span></li>
                         </ul>
                     </div><!-- .foot-contact -->
-
-                    <div class="subscribe-form">
-                        <form class="d-flex flex-wrap align-items-center">
-                            <label>Bağışları Takip Et</label>
-                            <input type="email" placeholder="Eposta Adresiniz">
-                            <input type="submit" value="Gönder">
-                        </form><!-- .flex -->
-                    </div><!-- .search-widget -->
                 </div><!-- .col -->
             </div><!-- .row -->
         </div><!-- .container -->

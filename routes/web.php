@@ -36,15 +36,15 @@ Route::get('hakkimizda', function () {
     return view('hakkimizda');
 })->name('hakkimizda');
 
-Route::get('haberler', function () {
-    return view('anasayfa');
-})->name('haberler');
-
 Route::get('iletisim', function () {
     return view('iletisim');
 })->name('iletisim');
 
+Route::post('bize-yazin','AnasayfaController@bize_yazin')->name('bize_yazin');
+
 Route::get('bagislar/{slug?}','BagisController@bagislar')->name('bagislar');
+
+Route::get('haberler/{slug?}','HaberController@haberler')->name('haberler');
 
 
 Route::group(['middleware' => ['web', 'auth']], function () {
