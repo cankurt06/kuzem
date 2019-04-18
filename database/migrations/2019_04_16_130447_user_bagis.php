@@ -15,7 +15,7 @@ class UserBagis extends Migration
     {
         Schema::create('user_bagis', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('bagis_no')->unsigned();
+            $table->integer('bagis_no')->unsigned()->unique();
             $table->integer('user_id')->unsigned();
             $table->integer('bagis_id')->unsigned();
             $table->decimal('bagis_tutari',18,2);

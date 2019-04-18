@@ -27,7 +27,7 @@
             <div class="row">
                     @foreach($aktif_bagislar as $aktif_bagis)
                 <div class="col-12 col-lg-6">
-                    <div class="cause-wrap d-flex flex-wrap justify-content-between" style="height: 500px;max-height: 500px;">
+                    <div class="cause-wrap d-flex flex-wrap justify-content-between">
                         <figure class="m-0">
                             <img src="{{asset($aktif_bagis->bagis_resmi)}}" alt="" style="width: 250px;height: 300px">
                         </figure>
@@ -95,7 +95,7 @@
             <div class="row">
                 @foreach($yaklasan_bagislar as $yaklasan_bagis)
                     <div class="col-12 col-lg-6">
-                        <div class="cause-wrap d-flex flex-wrap justify-content-between" style="height: 500px;max-height: 500px;">
+                        <div class="cause-wrap d-flex flex-wrap justify-content-between">
                             <figure class="m-0">
                                 <img src="{{asset($yaklasan_bagis->bagis_resmi)}}" alt="" style="width: 250px;height: 300px">
                             </figure>
@@ -165,7 +165,7 @@
             <div class="row">
                 @foreach($tamamlanan_bagislar as $tamamlanan_bagis)
                     <div class="col-12 col-lg-6">
-                        <div class="cause-wrap d-flex flex-wrap justify-content-between" style="height: 500px;max-height: 500px;">
+                        <div class="cause-wrap d-flex flex-wrap justify-content-between">
                             <figure class="m-0">
                                 <img src="{{asset($tamamlanan_bagis->bagis_resmi)}}" alt="" style="width: 250px;height: 300px">
                             </figure>
