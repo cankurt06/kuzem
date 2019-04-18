@@ -49,7 +49,10 @@ Route::get('haberler/{slug?}','HaberController@haberler')->name('haberler');
 
 Route::group(['middleware' => ['web', 'auth']], function () {
 
-Route::get('bagis-yap/{id?}',function (){ return view('hakkimizda');})->name('bagis_yap');
+Route::get('bagis-yap/{slug?}','BagisController@bagis_yap')->name('bagis_yap');
+
+Route::post('bagis-yap','BagisController@bagis_yap_post')->name('bagis_yap_post');
+
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'yonetim']], function () {

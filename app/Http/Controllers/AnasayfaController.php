@@ -66,7 +66,7 @@ class AnasayfaController extends Controller
         {
             return 0;
         }
-        $yuzde=100-round((($hedef_tutar-$odenen_tutar)/$hedef_tutar)*100,0);
+        $yuzde=100-ceil((($hedef_tutar-$odenen_tutar)/$hedef_tutar)*100);
         return $yuzde;
     }
 

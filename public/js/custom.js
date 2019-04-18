@@ -152,7 +152,16 @@
         $('.portfolio-item:hidden').slice(0, 9).addClass('visible');
     });
 
-
+$("input[name='tutar']").on('change',function () {
+   if ($(this).val()=="custom")
+   {
+       $("input[name='elle_tutar']").show();
+   }
+   else
+   {
+       $("input[name='elle_tutar']").hide();
+   }
+});
 
 })(jQuery);
 
