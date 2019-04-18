@@ -53,8 +53,11 @@ class AnasayfaController extends Controller
 
     public static function yapilan_bagis_toplami($bagis_id)
     {
-        $yapilan_odeme=UserBagis::selectRaw('SUM(bagis_tutari) AS TUTAR')->where('bagis_id',$bagis_id)->where('bagis_durumu',1)->first()->TUTAR;
-        return $yapilan_odeme;
+        $yapilan_odeme=UserBagis::where('bagis_id',$bagis_id)->where('bagis_durumu',1)->get();
+        if (count($yapilan_odeme)>0)
+        return $yapilan_odeme->sum("bagis_tutari");
+        else
+            return 0;
     }
 
     public static function bagis_tamamlama_orani($hedef_tutar,$odenen_tutar)
@@ -63,7 +66,7 @@ class AnasayfaController extends Controller
         {
             return 0;
         }
-        $yuzde=round($hedef_tutar/$odenen_tutar,0);
+        $yuzde=100-round((($hedef_tutar-$odenen_tutar)/$hedef_tutar)*100,0);
         return $yuzde;
     }
 

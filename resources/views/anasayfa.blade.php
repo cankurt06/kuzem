@@ -258,7 +258,7 @@
 
                                     <div class="cause-content-wrap">
                                         <header class="entry-header d-flex flex-wrap align-items-center">
-                                            <h3 class="entry-title w-100 m-0"><a href="{{route('bagislar',['slug'=>$oncelikli_bagis->slug])}}">{{$diger_bagis->bagis_adi}}</a></h3>
+                                            <h3 class="entry-title w-100 m-0"><a href="{{route('bagislar',['slug'=>$diger_bagis->slug])}}">{{$diger_bagis->bagis_adi}}</a></h3>
                                         </header><!-- .entry-header -->
 
                                         <div class="entry-content">
@@ -266,7 +266,7 @@
                                         </div><!-- .entry-content -->
 
                                         <div class="fund-raised w-100">
-                                            <div class="fund-raised-bar-1 barfiller">
+                                            <div class="fund-raised-bar-{{$diger_bagis->id}} barfiller" >
                                                 <div class="tipWrap">
                                                     <span class="tip"></span>
                                                 </div><!-- .tipWrap -->
@@ -365,5 +365,9 @@
             </div><!-- .row -->
         </div><!-- .container -->
     </div><!-- .our-causes -->
-
 @endsection
+@section('script')
+    @foreach(anasayfa::diger_bagislar() as $diger_bagis)
+        <script>jQuery(document).ready(function ($){bar_filler($,{{$diger_bagis->id}})});</script>
+    @endforeach
+    @endsection

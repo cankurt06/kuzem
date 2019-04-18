@@ -139,12 +139,6 @@
     // Bar Filler
     $('.featured-fund-raised-bar').barfiller({ barColor: '#ff5a00', duration: 1500 });
 
-    $('.fund-raised-bar-1').barfiller({ barColor: '#ff5a00', duration: 1500 });
-    $('.fund-raised-bar-2').barfiller({ barColor: '#ff5a00', duration: 1500 });
-    $('.fund-raised-bar-3').barfiller({ barColor: '#ff5a00', duration: 1500 });
-    $('.fund-raised-bar-4').barfiller({ barColor: '#ff5a00', duration: 1500 });
-    $('.fund-raised-bar-5').barfiller({ barColor: '#ff5a00', duration: 1500 });
-    $('.fund-raised-bar-6').barfiller({ barColor: '#ff5a00', duration: 1500 });
 
     // Load more
     let $container      = $('.portfolio-container');
@@ -161,3 +155,8 @@
 
 
 })(jQuery);
+
+function bar_filler($,id) {
+    $('.fund-raised-bar-'+id).barfiller({ barColor: '#ff5a00', duration: 1500 });
+    $('.featured-fund-raised-bar-'+id).barfiller({ barColor: '#ff5a00', duration: 1500 });
+}

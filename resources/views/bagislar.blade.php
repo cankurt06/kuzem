@@ -55,7 +55,7 @@
                         </div><!-- .cause-content-wrap -->
 
                         <div class="fund-raised w-100">
-                            <div class="featured-fund-raised-bar barfiller">
+                            <div class="featured-fund-raised-bar-{{$aktif_bagis->id}} barfiller">
                                 <div class="tipWrap">
                                     <span class="tip"></span>
                                 </div><!-- .tipWrap -->
@@ -123,7 +123,7 @@
                             </div><!-- .cause-content-wrap -->
 
                             <div class="fund-raised w-100">
-                                <div class="featured-fund-raised-bar barfiller">
+                                <div class="featured-fund-raised-bar-{{$yaklasan_bagis->id}} barfiller">
                                     <div class="tipWrap">
                                         <span class="tip"></span>
                                     </div><!-- .tipWrap -->
@@ -193,7 +193,7 @@
                             </div><!-- .cause-content-wrap -->
 
                             <div class="fund-raised w-100">
-                                <div class="featured-fund-raised-bar barfiller">
+                                <div class="featured-fund-raised-bar-{{$tamamlanan_bagis->id}} barfiller">
                                     <div class="tipWrap">
                                         <span class="tip"></span>
                                     </div><!-- .tipWrap -->
@@ -219,4 +219,9 @@
             <div>    {{ $tamamlanan_bagislar->links('vendor.pagination.bootstrap-4') }}</div>
         </div><!-- .container -->
     </div><!-- .featured-cause -->
+@endsection
+@section('script')
+    @foreach(\App\Bagislar::get() as $bagis)
+        <script>jQuery(document).ready(function ($){bar_filler($,{{$bagis->id}})});</script>
+    @endforeach
 @endsection
