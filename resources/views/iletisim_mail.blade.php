@@ -341,7 +341,7 @@
                                 <tr>
                                     <td>
                                         <h3>Merhaba,</h3>
-                                        <h3>Bağışçım Ol'a Mesaj Gönderildi!</h3>
+                                        <h3>{{$mesaj_baslik}}</h3>
                                         <p>Adı: {{$adi}}</p>
                                         <p>Eposta: {{$eposta}}</p>
                                         <p>Mesaj: {{$mesaj}}</p>

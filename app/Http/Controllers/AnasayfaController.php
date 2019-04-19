@@ -76,7 +76,8 @@ class AnasayfaController extends Controller
         (
             'adi'=>$request->isim,
             'eposta'=>$request->eposta,
-            'mesaj'=>$request->mesaj
+            'mesaj'=>$request->mesaj,
+            'mesaj_baslik'=>"Bağışçım Ol'a Mesaj Gönderildi!"
         );
         try
         {

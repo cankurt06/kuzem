@@ -9,6 +9,7 @@ use App\UserBagis;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -126,11 +127,23 @@ class AdminController extends Controller
 
     public function odeme_yap($id)
     {
-        $bagis=UserBagis::where('id', $id)->where('bagis_durumu',0)->first();
+        $bagis=UserBagis::with('get_bagis_yapan')->where('id', $id)->where('bagis_durumu',0)->first();
         if ($bagis)
         {
             $bagis->bagis_durumu=1;
             $bagis->save();
+            $data = array
+            (
+                'adi'=>$bagis->get_bagis_yapan->name,
+                'eposta'=>$bagis->get_bagis_yapan->email,
+                'mesaj_baslik'=>"Bağışçım Ol Ödemeniz Alındı!",
+                'mesaj'=>"Tebrikler,".$bagis->bagis_no." numaralı bağış ödemeniz alındı,artık sizde bir bağışçı oldunuz.Siteye giriş yaparak bağışçı sertifikanızı indirebilirsiniz."
+            );
+            Mail::send('iletisim_mail', $data, function ($message) use ($bagis) {
+                $message->subject ('Bağışçım Ol Ödemeniz Alındı!');
+                $message->from ('iletisim@kuzemodevim.site', 'Bağışçım Ol');
+                $message->to($bagis->get_bagis_yapan->email, $bagis->get_bagis_yapan->name);
+            });
             return redirect()->route('yapilan_bagislar')->with('sonuc', ["success", "Ödeme Başarıyla Alındı."]);
         }
         return redirect()->route('yapilan_bagislar')->with('sonuc', ["danger", "Ödeme Zaten Yapılmış."]);
