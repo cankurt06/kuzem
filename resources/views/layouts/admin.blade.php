@@ -53,7 +53,7 @@
                 <span>Üyeler</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('admin_bagislar')}}">
                 <i class="fas fa-fw fa-heart"></i>
                 <span>Bağışlar</span></a>
         </li>

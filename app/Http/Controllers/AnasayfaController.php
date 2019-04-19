@@ -13,7 +13,7 @@ class AnasayfaController extends Controller
 {
     public function index()
     {
-        $oncelikli_bagis=Bagislar::with('get_kategori')->where('onemli_bagis',1)->where('created_at','<',Carbon::now())->orderByDesc('created_at')->first();
+        $oncelikli_bagis=Bagislar::with('get_kategori')->where('onemli_bagis',1)->where('bagis_tamamlandi',0)->where('created_at','<',Carbon::now())->orderByDesc('created_at')->first();
         return view('anasayfa',compact('oncelikli_bagis'));
     }
     public static function slaytlar()

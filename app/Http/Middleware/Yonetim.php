@@ -17,10 +17,16 @@ class Yonetim
      */
     public function handle($request, Closure $next)
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $_SESSION['KCFINDER'] = array();
         if ($this->IsYonetim()==false)
         {
-            return redirect()->route('register');
+            $_SESSION['KCFINDER']['disabled'] = true;
+            return redirect()->route('login');
         };
+        $_SESSION['KCFINDER']['disabled'] = false;
         return $next($request);
 
     }

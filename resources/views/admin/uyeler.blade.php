@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('head')
     <title>{{config('app.name')}} | Admin Üyeler</title>
+    <link href="{{asset('admin/vendor/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet">
 @stop
 @section('content')
     <!-- Page Heading -->
@@ -8,7 +9,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Üyeler tablosu</h6>
+            <h6 class="m-2 font-weight-bold text-primary">Üyeler tablosu</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">

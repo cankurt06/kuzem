@@ -67,4 +67,20 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'yonetim']], 
     Route::get('kullanici-sil/{id}','AdminController@kullanici_sil')->name('kullanici_sil');
 
     Route::get('kullanici-yonetici-yap/{id}','AdminController@kullanici_admin_yap')->name('kullanici_admin_yap');
+
+    Route::get('/bagislar', function () {
+        return view('admin.bagislar');
+    })->name('admin_bagislar');
+
+    Route::get('bagis-sil/{id}','AdminController@bagis_sil')->name('bagis_sil');
+
+    Route::get('/bagis-ekle', function () {
+        return view('admin.bagis_ekle');
+    })->name('bagis_ekle');
+
+    Route::post('bagis-ekle','AdminController@bagis_ekle')->name('bagis_ekle_post');
+
+    Route::get('bagis-duzenle/{id}','AdminController@bagis_duzenle')->name('bagis_duzenle');
+
+    Route::post('bagis-duzenle','AdminController@bagis_duzenle_post')->name('bagis_duzenle_post');
 });
