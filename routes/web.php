@@ -83,4 +83,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'yonetim']], 
     Route::get('bagis-duzenle/{id}','AdminController@bagis_duzenle')->name('bagis_duzenle');
 
     Route::post('bagis-duzenle','AdminController@bagis_duzenle_post')->name('bagis_duzenle_post');
+
+    Route::get('/yapilan-bagislar', function () {
+        return view('admin.yapilan_bagislar');
+    })->name('yapilan_bagislar');
+
+    Route::get('odeme-sil/{id}','AdminController@odeme_sil')->name('odeme_sil');
+
+    Route::get('odeme-yap/{id}','AdminController@odeme_yap')->name('odeme_yap');
 });

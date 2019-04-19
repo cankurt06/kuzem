@@ -118,6 +118,23 @@ class AdminController extends Controller
         return redirect()->route('bagis_duzenle',['id'=>$request->id])->with('sonuc', ["success", "Bağış Başarıyla Güncellendi."]);
     }
 
+    public function odeme_sil($id)
+    {
+        UserBagis::where('id', $id)->delete();
+        return redirect()->route('yapilan_bagislar')->with('sonuc', ["success", "Ödeme Başarıyla Silindi."]);
+    }
+
+    public function odeme_yap($id)
+    {
+        $bagis=UserBagis::where('id', $id)->where('bagis_durumu',0)->first();
+        if ($bagis)
+        {
+            $bagis->bagis_durumu=1;
+            $bagis->save();
+            return redirect()->route('yapilan_bagislar')->with('sonuc', ["success", "Ödeme Başarıyla Alındı."]);
+        }
+        return redirect()->route('yapilan_bagislar')->with('sonuc', ["danger", "Ödeme Zaten Yapılmış."]);
+    }
     public static function aylik_istatiktik()
     {
         $tutar = collect();

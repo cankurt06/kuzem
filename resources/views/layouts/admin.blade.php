@@ -58,14 +58,9 @@
                 <span>Bağışlar</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('yapilan_bagislar')}}">
                 <i class="fas fa-fw fa-hand-holding-heart"></i>
                 <span>Yapılan Bağışlar</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-handshake"></i>
-                <span>Bağış Ödeme İşlemleri</span></a>
         </li>
         <!-- Nav Item - Utilities Collapse Menu -->
 
