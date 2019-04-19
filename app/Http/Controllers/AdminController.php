@@ -49,6 +49,18 @@ class AdminController extends Controller
         $bagis_oran["bekleyen"]=100-round((($hepsi-$bekleyen)/$hepsi)*100);
         return $bagis_oran;
     }
+
+    public function kullanici_sil($id)
+    {
+        User::where('id',$id)->delete();
+        return redirect()->route('admin_uyeler')->with('sonuc',["success","Kullanıcı Başarıyla Silindi."]);
+    }
+
+    public function kullanici_admin_yap($id)
+    {
+        User::where('id',$id)->update(['admin_user'=>1]);
+        return redirect()->route('admin_uyeler')->with('sonuc',["success","Kullanıcı Artık Yönetici Yetkisine Sahip."]);
+    }
     public static function aylik_istatiktik()
     {
         $tutar=collect();

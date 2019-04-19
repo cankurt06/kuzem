@@ -59,4 +59,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'yonetim']], 
     Route::get('/', function () {
         return view('admin.anasayfa');
     })->name('admin_anasayfa');
+
+    Route::get('/uyeler', function () {
+        return view('admin.uyeler');
+    })->name('admin_uyeler');
+
+    Route::get('kullanici-sil/{id}','AdminController@kullanici_sil')->name('kullanici_sil');
+
+    Route::get('kullanici-yonetici-yap/{id}','AdminController@kullanici_admin_yap')->name('kullanici_admin_yap');
 });
