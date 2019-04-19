@@ -24,7 +24,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin_anasayfa')}}">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('anasayfa')}}" target="_blank">
             <img src="{{asset('images/logo.png')}}" />
         </a>
 
@@ -34,8 +34,8 @@
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
             <a class="nav-link" href="{{route('admin_anasayfa')}}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
+                <i class="fas fa-fw fa-home"></i>
+                <span>Anasayfa</span></a>
         </li>
 
         <!-- Divider -->
@@ -43,81 +43,54 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Interface
+            Bağış ve Üyeler
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Components</span>
-            </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item" href="buttons.html">Buttons</a>
-                    <a class="collapse-item" href="cards.html">Cards</a>
-                </div>
-            </div>
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Üyeler</span></a>
         </li>
-
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-heart"></i>
+                <span>Bağışlar</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-hand-holding-heart"></i>
+                <span>Yapılan Bağışlar</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-handshake"></i>
+                <span>Bağış Ödeme İşlemleri</span></a>
+        </li>
         <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Utilities</span>
-            </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="utilities-color.html">Colors</a>
-                    <a class="collapse-item" href="utilities-border.html">Borders</a>
-                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                    <a class="collapse-item" href="utilities-other.html">Other</a>
-                </div>
-            </div>
-        </li>
 
         <!-- Divider -->
         <hr class="sidebar-divider">
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Addons
+            Site İşlemleri
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item active">
-            <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Pages</span>
-            </a>
-            <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item" href="login.html">Login</a>
-                    <a class="collapse-item" href="register.html">Register</a>
-                    <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                    <div class="collapse-divider"></div>
-                    <h6 class="collapse-header">Other Pages:</h6>
-                    <a class="collapse-item" href="404.html">404 Page</a>
-                    <a class="collapse-item active" href="blank.html">Blank Page</a>
-                </div>
-            </div>
-        </li>
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="charts.html">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Charts</span></a>
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-newspaper"></i>
+                <span>Haberler</span></a>
         </li>
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-            <a class="nav-link" href="tables.html">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Tables</span></a>
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-cogs"></i>
+                <span>Site Ayarları</span></a>
         </li>
 
         <!-- Divider -->
@@ -162,7 +135,7 @@
                                 Profilim
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <a class="dropdown-item" href="{{route('cikis')}}">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Çıkış
                             </a>
@@ -178,7 +151,7 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+               @yield("content")
 
             </div>
             <!-- /.container-fluid -->
@@ -212,7 +185,7 @@
 <script src="{{asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 <script src="{{asset('admin/js/sb-admin-2.min.js')}}"></script>
-
+@yield('script')
 </body>
 
 </html>
