@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Bagislar;
+use App\Sertifikalar;
 use App\UserBagis;
 use Carbon\Carbon;
+use ConvertApi\ConvertApi;
+use PhpOffice\PhpWord\PhpWord;
+use PhpOffice\PhpWord\TemplateProcessor;
+use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -103,5 +108,31 @@ class BagisController extends Controller
            return $this->random_siparis_no();
         }
         return $random;
+    }
+
+    public function sertifika_olustur($userbagis_id)
+    {
+        $user_bagis=UserBagis::with('get_bagis_yapan')->with('get_bagis_bilgisi')->where('id',$userbagis_id)->first();
+        $uid = Uuid::uuid1();
+        $yeni_sertifika=new Sertifikalar();
+        $yeni_sertifika->user_id=$user_bagis->user_id;
+        $yeni_sertifika->bagis_id=$user_bagis->bagis_id;
+        $yeni_sertifika->sertifika_uuid=$uid;
+        $yeni_sertifika->save();
+
+        $templateProcessor = new TemplateProcessor('storage/app/sertifika_template.docx');
+        $templateProcessor->setValue('TARIH', Carbon::parse(Carbon::now())->format('d.m.Y'));
+        $templateProcessor->setValue('ISIM', $user_bagis->get_bagis_yapan->name);
+        $templateProcessor->setValue('BAGIS', $user_bagis->get_bagis_bilgisi->bagis_adi);
+        $templateProcessor->saveAs('public/sertifikalar/' . $uid . '.docx');
+
+        ConvertApi::setApiSecret('spkCWDoke0KBpZbY');
+        $result = ConvertApi::convert('pdf', ['File' => 'public/sertifikalar/' . $uid . '.docx']);
+        $result->getFile()->save('public/sertifikalar/'.$uid.'.pdf');
+
+        $file_path = 'public/sertifikalar/' . $uid . '.docx';
+        unlink($file_path);
+
+        return $uid;
     }
 }

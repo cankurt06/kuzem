@@ -144,6 +144,8 @@ class AdminController extends Controller
                 $message->from ('iletisim@kuzemodevim.site', 'Bağışçım Ol');
                 $message->to($bagis->get_bagis_yapan->email, $bagis->get_bagis_yapan->name);
             });
+            $bagis_con=new BagisController();
+            $bagis_con->sertifika_olustur($bagis->id);
             return redirect()->route('yapilan_bagislar')->with('sonuc', ["success", "Ödeme Başarıyla Alındı."]);
         }
         return redirect()->route('yapilan_bagislar')->with('sonuc', ["danger", "Ödeme Zaten Yapılmış."]);
