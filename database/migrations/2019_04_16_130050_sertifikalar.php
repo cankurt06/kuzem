@@ -17,6 +17,7 @@ class Sertifikalar extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('bagis_id')->unsigned();
+            $table->integer('user_bagis_id')->unsigned();
             $table->uuid('sertifika_uuid')->unique();
             $table->timestamps();
         });
@@ -24,6 +25,7 @@ class Sertifikalar extends Migration
         Schema::table('sertifikalar', function($table) {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('bagis_id')->references('id')->on('bagislar')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_bagis_id')->references('id')->on('user_bagis')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

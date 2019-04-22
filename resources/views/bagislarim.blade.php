@@ -37,6 +37,7 @@
                               <td>{{anasayfa::turk_parasi_yap($bagis->bagis_tutari)}}</td>
                               @if($bagis->bagis_durumu==1) <td style="color: green;"> Ödendi </td> @else <td style="color:red;"> Ödeme Bekliyor </td> @endif
                               <td>{{carbon::parse($bagis->created_at)->format('d.m.Y')}}</td>
+                              <td class="text-center"> @if($bagis->get_sertifika) <a href="{{route('sertifika_indir',['uuid'=>$bagis->get_sertifika->sertifika_uuid])}}"><i class="fa fa-file-pdf-o"></i>  </a>  @endif </td>
                           </tr>
                           @endforeach
                       </tbody>

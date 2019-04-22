@@ -55,9 +55,10 @@ Route::post('bagis-yap','BagisController@bagis_yap_post')->name('bagis_yap_post'
 
 Route::get('bagislarim','BagisController@bagislarim')->name('bagislarim');
 
+Route::get('sertifika-indir/{uuid}','BagisController@sertifika_indir')->name('sertifika_indir');
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'yonetim']], function () {
+Route::group(['prefix' => 'yonetim', 'middleware' => ['web', 'auth', 'yonetim']], function () {
     Route::get('/', function () {
         return view('admin.anasayfa');
     })->name('admin_anasayfa');
