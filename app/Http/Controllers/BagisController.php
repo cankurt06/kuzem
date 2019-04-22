@@ -22,6 +22,12 @@ class BagisController extends Controller
         $tamamlanan_bagislar=Bagislar::with('get_kategori')->where('bagis_tamamlandi',1)->orderByDesc('created_at')->paginate(2,['*'], 'tamamlanan-bagis');
         return view('bagislar',compact('yaklasan_bagislar','aktif_bagislar','tamamlanan_bagislar'));
     }
+
+    public function bagislarim()
+    {
+        $bagislarim=UserBagis::with('get_bagis_bilgisi')->where('user_id',Auth::id())->orderByDesc('created_at')->get();
+        return view('bagislarim',compact('bagislarim'));
+    }
     public function bagis_yap($slug)
     {
         if ($slug)

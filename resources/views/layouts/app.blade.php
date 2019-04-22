@@ -65,7 +65,7 @@
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         @if(Auth::user()->admin_user==1) <a class="dropdown-item" href="{{route('admin_anasayfa')}}">Admin Paneli</a> @endif
                                         <a class="dropdown-item" href="#">Profilim</a>
-                                        <a class="dropdown-item" href="#">Bağışlarım</a>
+                                        <a class="dropdown-item" href="{{route('bagislarim')}}">Bağışlarım</a>
                                         <a class="dropdown-item" href="{{route('cikis')}}">Çıkış Yap</a>
                                     </div>
                                 </div>

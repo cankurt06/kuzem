@@ -53,6 +53,8 @@ Route::get('bagis-yap/{slug?}','BagisController@bagis_yap')->name('bagis_yap');
 
 Route::post('bagis-yap','BagisController@bagis_yap_post')->name('bagis_yap_post');
 
+Route::get('bagislarim','BagisController@bagislarim')->name('bagislarim');
+
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'yonetim']], function () {
