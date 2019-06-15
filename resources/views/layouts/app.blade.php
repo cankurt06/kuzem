@@ -64,7 +64,7 @@
                                     <a class="nav-link dropdown-toggle menu-profil"  href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         @if(Auth::user()->admin_user==1) <a class="dropdown-item" href="{{route('admin_anasayfa')}}">Admin Paneli</a> @endif
-                                        <a class="dropdown-item" href="#">Profilim</a>
+                                        <a class="dropdown-item" href="{{route('profilim')}}">Profilim</a>
                                         <a class="dropdown-item" href="{{route('bagislarim')}}">Bağışlarım</a>
                                         <a class="dropdown-item" href="{{route('cikis')}}">Çıkış Yap</a>
                                     </div>

@@ -40,22 +40,26 @@ Route::get('iletisim', function () {
     return view('iletisim');
 })->name('iletisim');
 
-Route::post('bize-yazin','AnasayfaController@bize_yazin')->name('bize_yazin');
+Route::post('bize-yazin', 'AnasayfaController@bize_yazin')->name('bize_yazin');
 
-Route::get('bagislar/{slug?}','BagisController@bagislar')->name('bagislar');
+Route::get('bagislar/{slug?}', 'BagisController@bagislar')->name('bagislar');
 
-Route::get('haberler/{slug?}','HaberController@haberler')->name('haberler');
+Route::get('haberler/{slug?}', 'HaberController@haberler')->name('haberler');
 
 
 Route::group(['middleware' => ['web', 'auth']], function () {
 
-Route::get('bagis-yap/{slug?}','BagisController@bagis_yap')->name('bagis_yap');
+    Route::get('profilim', 'UserController@profilim')->name('profilim');
 
-Route::post('bagis-yap','BagisController@bagis_yap_post')->name('bagis_yap_post');
+    Route::post('profil-guncelle', 'UserController@profil_guncelle')->name('profil_guncelle');
 
-Route::get('bagislarim','BagisController@bagislarim')->name('bagislarim');
+    Route::get('bagis-yap/{slug?}', 'BagisController@bagis_yap')->name('bagis_yap');
 
-Route::get('sertifika-indir/{uuid}','BagisController@sertifika_indir')->name('sertifika_indir');
+    Route::post('bagis-yap', 'BagisController@bagis_yap_post')->name('bagis_yap_post');
+
+    Route::get('bagislarim', 'BagisController@bagislarim')->name('bagislarim');
+
+    Route::get('sertifika-indir/{uuid}', 'BagisController@sertifika_indir')->name('sertifika_indir');
 });
 
 Route::group(['prefix' => 'yonetim', 'middleware' => ['web', 'auth', 'yonetim']], function () {
@@ -67,50 +71,50 @@ Route::group(['prefix' => 'yonetim', 'middleware' => ['web', 'auth', 'yonetim']]
         return view('admin.uyeler');
     })->name('admin_uyeler');
 
-    Route::get('kullanici-sil/{id}','AdminController@kullanici_sil')->name('kullanici_sil');
+    Route::get('kullanici-sil/{id}', 'AdminController@kullanici_sil')->name('kullanici_sil');
 
-    Route::get('kullanici-yonetici-yap/{id}','AdminController@kullanici_admin_yap')->name('kullanici_admin_yap');
+    Route::get('kullanici-yonetici-yap/{id}', 'AdminController@kullanici_admin_yap')->name('kullanici_admin_yap');
 
     Route::get('/bagislar', function () {
         return view('admin.bagislar');
     })->name('admin_bagislar');
 
-    Route::get('bagis-sil/{id}','AdminController@bagis_sil')->name('bagis_sil');
+    Route::get('bagis-sil/{id}', 'AdminController@bagis_sil')->name('bagis_sil');
 
     Route::get('/bagis-ekle', function () {
         return view('admin.bagis_ekle');
     })->name('bagis_ekle');
 
-    Route::post('bagis-ekle','AdminController@bagis_ekle')->name('bagis_ekle_post');
+    Route::post('bagis-ekle', 'AdminController@bagis_ekle')->name('bagis_ekle_post');
 
-    Route::get('bagis-duzenle/{id}','AdminController@bagis_duzenle')->name('bagis_duzenle');
+    Route::get('bagis-duzenle/{id}', 'AdminController@bagis_duzenle')->name('bagis_duzenle');
 
-    Route::post('bagis-duzenle','AdminController@bagis_duzenle_post')->name('bagis_duzenle_post');
+    Route::post('bagis-duzenle', 'AdminController@bagis_duzenle_post')->name('bagis_duzenle_post');
 
     Route::get('/yapilan-bagislar', function () {
         return view('admin.yapilan_bagislar');
     })->name('yapilan_bagislar');
 
-    Route::get('odeme-sil/{id}','AdminController@odeme_sil')->name('odeme_sil');
+    Route::get('odeme-sil/{id}', 'AdminController@odeme_sil')->name('odeme_sil');
 
-    Route::get('odeme-yap/{id}','AdminController@odeme_yap')->name('odeme_yap');
+    Route::get('odeme-yap/{id}', 'AdminController@odeme_yap')->name('odeme_yap');
 
-    Route::get('haberler','AdminController@haberler')->name('admin_haberler');
+    Route::get('haberler', 'AdminController@haberler')->name('admin_haberler');
 
-    Route::get('haber-sil/{id}','AdminController@haber_sil')->name('haber_sil');
+    Route::get('haber-sil/{id}', 'AdminController@haber_sil')->name('haber_sil');
 
     Route::get('/haber-ekle', function () {
         return view('admin.haber_ekle');
     })->name('haber_ekle');
 
-    Route::post('haber-ekle','AdminController@haber_ekle')->name('haber_ekle_post');
+    Route::post('haber-ekle', 'AdminController@haber_ekle')->name('haber_ekle_post');
 
-    Route::get('haber-duzenle/{id}','AdminController@haber_duzenle')->name('haber_duzenle');
+    Route::get('haber-duzenle/{id}', 'AdminController@haber_duzenle')->name('haber_duzenle');
 
-    Route::post('haber-duzenle','AdminController@haber_duzenle_post')->name('haber_duzenle_post');
+    Route::post('haber-duzenle', 'AdminController@haber_duzenle_post')->name('haber_duzenle_post');
 
-    Route::get('site-ayarlari','AdminController@site_ayarlari')->name('site_ayarlari');
+    Route::get('site-ayarlari', 'AdminController@site_ayarlari')->name('site_ayarlari');
 
-    Route::post('site-ayarlari-duzenle','AdminController@site_ayarlari_duzenle')->name('site_ayarlari_duzenle');
+    Route::post('site-ayarlari-duzenle', 'AdminController@site_ayarlari_duzenle')->name('site_ayarlari_duzenle');
 
 });
