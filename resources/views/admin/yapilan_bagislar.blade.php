@@ -29,19 +29,6 @@
                         <th width="50px">Ödeme</th>
                     </tr>
                     </thead>
-                    <tfoot>
-                    <tr>
-                        <th>Bağış No</th>
-                        <th>Bağış Yapan Kişi / TC Kimlik</th>
-                        <th>Bağış Adı</th>
-                        <th>Bağış Türü</th>
-                        <th>Bağış Yapılan Tutar</th>
-                        <th>Bağış Durumu</th>
-                        <th>Bağış Tarihi</th>
-                        <th width="50px">Sil</th>
-                        <th width="50px">Ödeme</th>
-                    </tr>
-                    </tfoot>
                     <tbody>
                     @foreach(\App\UserBagis::with('get_bagis_bilgisi')->with('get_bagis_yapan')->orderByDesc('created_at')->get() as $bagis)
                         <tr>

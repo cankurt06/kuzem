@@ -36,7 +36,7 @@
                         </header>
 
                         <div class="entry-content">
-                            <p>{{$haber->haber_icerik}}</p>
+                            <p>{!! $haber->haber_icerik !!}</p>
                         </div>
 
                         <footer class="entry-footer">

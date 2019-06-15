@@ -319,7 +319,7 @@
 
                                 <div class="d-flex justify-content-center align-items-baseline">
                                     <div class="start-counter" data-to="{{\App\SiteAyarlari::where('ayar_adi','yardim_sayisi')->first()->deger}}" data-speed="1000"></div>
-                                    <div class="counter-k">Bin</div>
+                                    <div class="counter-k"></div>
                                 </div>
 
                                 <h3 class="entry-title">Kişiye Yardım Edildi</h3><!-- entry-title -->

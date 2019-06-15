@@ -1,42 +1,41 @@
 @extends('layouts.admin')
 @section('head')
-    <title>{{config('app.name')}} | Admin Üyeler</title>
+    <title>{{config('app.name')}} | Admin Haberler</title>
     <link href="{{asset('admin/vendor/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet">
 @stop
 @section('content')
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Üyeler</h1>
+    <h1 class="h3 mb-2 text-gray-800">Haberler</h1>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-2 font-weight-bold text-primary">Üyeler tablosu</h6>
+            <div class="row">
+                <div class="col-xl-6"> <h6 class="m-2 font-weight-bold text-primary">Haberler tablosu</h6></div>
+                <div class="col-xl-6"><a class="btn btn-success float-right" href="{{route('haber_ekle')}}">Yeni Haber Ekle</a></div>
+            </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%">
                     <thead>
                     <tr>
-                        <th>Adı Soyadı</th>
-                        <th>Eposta</th>
-                        <th>Telefon</th>
-                        <th>Tc Kimlik</th>
-                        <th>Üye Tipi</th>
-                        <th>Kayıt Tarihi</th>
+                        <th>Haber Resmi</th>
+                        <th>Haber Başlığı</th>
+                        <th>Haber Adresi</th>
+                        <th>Haber Tarihi</th>
                         <th width="50px">Sil</th>
-                        <th width="120px">Yönetici Yap</th>
+                        <th width="50px">Düzenle</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach(\App\User::get() as $uye)
+                    @foreach($haberler as $haber)
                         <tr>
-                            <td>{{$uye->name}}</td>
-                            <td>{{$uye->email}}</td>
-                            <td>{{$uye->telefon}}</td>
-                            <td>{{$uye->tc_kimlik}}</td>
-                            <td>{{$uye->admin_user==1?"Admin":"Bağışçı"}}</td>
-                            <td>{{carbon::parse($uye->created_at)->format('d.m.Y')}}</td>
-                            <td><a href="{{route('kullanici_sil',['id'=>$uye->id])}}" class="btn btn-sm btn-danger user_sil"><i class="fas fa-trash"></i> </a></td>
-                            <td>@if($uye->admin_user==0)<a href="#" class="btn btn-sm btn-success"><i class="fas fa-user-shield "></i> </a>@endif</td>
+                            <td style="max-width: 100px"><img style="width: 100%;" src="{{asset($haber->haber_resim_url)}}" alt="{{$haber->haber_baslik}}"> </td>
+                            <td>{{$haber->haber_baslik}}</td>
+                            <td><a href="{{route('haberler',['slug'=>$haber->slug])}}" target="_blank">{{$haber->slug}}</a></td>
+                            <td>{{carbon::parse($haber->created_at)->format('d.m.Y')}}</td>
+                            <td><a href="{{route('haber_sil',['id'=>$haber->id])}}" class="btn btn-sm btn-danger haber_sil"><i class="fas fa-trash"></i> </a></td>
+                            <td><a href="{{route('haber_duzenle',['id'=>$haber->id])}}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> </a></td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -51,11 +50,11 @@
     <script src="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('admin/js/demo/datatables-demo.js')}}"></script>
     <script>
-        $('.user_sil').on('click', function (e) {
+        $('.haber_sil').on('click', function (e) {
             e.preventDefault();
             var link = $(this).attr('href');
             Swal.fire({
-                title: 'Kullanıcı Silinecek \nOnaylıyor Musunuz ?',
+                title: 'Haber Silinecek \nOnaylıyor Musunuz ?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',

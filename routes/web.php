@@ -94,4 +94,23 @@ Route::group(['prefix' => 'yonetim', 'middleware' => ['web', 'auth', 'yonetim']]
     Route::get('odeme-sil/{id}','AdminController@odeme_sil')->name('odeme_sil');
 
     Route::get('odeme-yap/{id}','AdminController@odeme_yap')->name('odeme_yap');
+
+    Route::get('haberler','AdminController@haberler')->name('admin_haberler');
+
+    Route::get('haber-sil/{id}','AdminController@haber_sil')->name('haber_sil');
+
+    Route::get('/haber-ekle', function () {
+        return view('admin.haber_ekle');
+    })->name('haber_ekle');
+
+    Route::post('haber-ekle','AdminController@haber_ekle')->name('haber_ekle_post');
+
+    Route::get('haber-duzenle/{id}','AdminController@haber_duzenle')->name('haber_duzenle');
+
+    Route::post('haber-duzenle','AdminController@haber_duzenle_post')->name('haber_duzenle_post');
+
+    Route::get('site-ayarlari','AdminController@site_ayarlari')->name('site_ayarlari');
+
+    Route::post('site-ayarlari-duzenle','AdminController@site_ayarlari_duzenle')->name('site_ayarlari_duzenle');
+
 });

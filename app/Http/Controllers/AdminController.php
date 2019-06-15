@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Bagislar;
 use App\Haberler;
+use App\SiteAyarlari;
 use App\User;
 use App\UserBagis;
 use Carbon\Carbon;
@@ -150,6 +151,60 @@ class AdminController extends Controller
             return redirect()->route('yapilan_bagislar')->with('sonuc', ["success", "Ödeme Başarıyla Alındı."]);
         }
         return redirect()->route('yapilan_bagislar')->with('sonuc', ["danger", "Ödeme Zaten Yapılmış."]);
+    }
+
+    public function haberler(){
+        $haberler=Haberler::orderByDesc('created_at')->get();
+        return view('admin.haberler', compact('haberler'));
+    }
+
+    public function haber_sil($id){
+        Haberler::where('id', $id)->delete();
+        return redirect()->route('admin_haberler')->with('sonuc', ["success", "Haber Başarıyla Silindi."]);
+    }
+
+    public function haber_ekle(Request $request){
+        $yeni_haber=new Haberler();
+        $yeni_haber->haber_baslik = $request->haber_baslik;
+        $yeni_haber->haber_icerik = $request->haber_icerik;
+        $yeni_haber->haber_resim_url = $request->haber_resim_url;
+        $yeni_haber->user_id = Auth::id();
+        $yeni_haber->slug = $this->slug_kontrol(str_slug($request->haber_baslik, '-'), "haber");
+        $yeni_haber->created_at=Carbon::parse($request->haber_tarihi)->format('Y-m-d 00:00:00');
+        $yeni_haber->save();
+        return redirect()->route('haber_ekle')->with('sonuc', ["success", "Haber Başarıyla Eklendi."]);
+    }
+    public function haber_duzenle($id)
+    {
+        $haber = Haberler::where('id', $id)->first();
+        if ($haber)
+            return view('admin.haber_duzenle', compact('haber'));
+        else
+            return redirect()->route("admin_haberler");
+    }
+    public function haber_duzenle_post(Request $request){
+        $haber_duzenle = Haberler::where('id',$request->id)->first();
+        $haber_duzenle->haber_baslik = $request->haber_baslik;
+        $haber_duzenle->haber_icerik = $request->haber_icerik;
+        $haber_duzenle->haber_resim_url = $request->haber_resim_url;
+        $haber_duzenle->slug = $this->slug_kontrol(str_slug($request->haber_baslik, '-'), "haber",$haber_duzenle->slug);
+        $haber_duzenle->created_at=Carbon::parse($request->haber_tarihi)->format('Y-m-d 00:00:00');
+        $haber_duzenle->save();
+        return redirect()->route('haber_duzenle',['id'=>$request->id])->with('sonuc', ["success", "Haber Başarıyla Güncellendi."]);
+    }
+    public function site_ayarlari(){
+        $site_ayarlari=SiteAyarlari::get();
+        return view('admin.site_ayarlari',compact('site_ayarlari'));
+    }
+    public function site_ayarlari_duzenle(Request $request){
+        $ayarlar=$request->site_ayar;
+        foreach ($ayarlar as $key=>$ayar){
+            $site_ayarlari=SiteAyarlari::where('ayar_adi',$key)->first();
+            $site_ayarlari->deger=$ayar;
+            $site_ayarlari->save();
+        }
+        return redirect()->route('site_ayarlari')->with('sonuc', ["success", "Site Ayarları Başarıyla Güncellendi."]);
+
     }
     public static function aylik_istatiktik()
     {

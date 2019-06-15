@@ -76,14 +76,14 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('admin_haberler')}}">
                 <i class="fas fa-fw fa-newspaper"></i>
                 <span>Haberler</span></a>
         </li>
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('site_ayarlari')}}">
                 <i class="fas fa-fw fa-cogs"></i>
                 <span>Site Ayarları</span></a>
         </li>

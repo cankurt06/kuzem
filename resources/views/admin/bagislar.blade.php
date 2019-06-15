@@ -30,19 +30,6 @@
                         <th width="50px">Düzenle</th>
                     </tr>
                     </thead>
-                    <tfoot>
-                    <tr>
-                        <th>Bağış Adı</th>
-                        <th>Bağış Slogan</th>
-                        <th>Bağış Türü</th>
-                        <th>Hedef Tutar</th>
-                        <th>Toplanan Tutar</th>
-                        <th>Bağış Durumu</th>
-                        <th>Bağış Baş. Tarihi</th>
-                        <th width="50px">Sil</th>
-                        <th width="50px">Düzenle</th>
-                    </tr>
-                    </tfoot>
                     <tbody>
                     @foreach(\App\Bagislar::with('get_kategori')->orderByDesc('created_at')->get() as $bagis)
                         <tr>
